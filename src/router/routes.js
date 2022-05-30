@@ -1,3 +1,11 @@
+/*
+ * @Author: Striver-TL
+ * @GitHubAdress: https://github.com/Striver-TL
+ * @Date: 2022-05-30 12:49:17
+ * @LastEditors: Striver-TL
+ * @LastEditTime: 2022-05-30 13:04:42
+ * @Description: file content
+ */
 import Index from "@/pages/index/index";
 import LoginIndex from "@/pages/login/index";
 import Login from "@/pages/login/login";
@@ -7,7 +15,7 @@ import IndexContent from "@/pages/index/content";
 const routes = [
   {
     path: "/",
-    redirect: "/index",
+    redirect: "/login",
   },
   {
     path: "/index",
