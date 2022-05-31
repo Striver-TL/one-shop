@@ -22,6 +22,16 @@ a {
   text-decoration: none;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
+button,
+input {
+  outline: none;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -29,7 +39,8 @@ a {
   color: #333;
 }
 
-.float-left {
+.float-left,
+.float-children > * {
   float: left;
 }
 
@@ -37,7 +48,8 @@ a {
   float: right;
 }
 
-.float-clear::after {
+.float-clear::after,
+.float-children::after {
   content: "";
   display: block;
   width: 0;
@@ -47,7 +59,12 @@ a {
 }
 
 .container {
-  max-width: 1190px;
+  width: 1300px;
+  margin: 0 auto;
+}
+
+.container-content {
+  width: 1200px;
   margin: 0 auto;
 }
 </style>
