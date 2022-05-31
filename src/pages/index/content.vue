@@ -3,9 +3,15 @@
     <div class="banner float-children">
       <div class="category"></div>
       <div class="slideshow">
-        <ul>
-          <li><a href=""><img src="@/static/ban1.jpg" alt=""></a></li>
+        <ul class="slideshow-list">
+          <transition name="fade">
+            <li><a href=""><img src="@/static/ban1.jpg" alt=""></a></li>
+          </transition>
         </ul>
+        <div class="slidesohw-btns"></div>
+        <div class="slideshow-sidebtn">
+
+        </div>
       </div>
     </div>
   </div>
