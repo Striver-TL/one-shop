@@ -67,4 +67,10 @@ input {
   width: 1200px;
   margin: 0 auto;
 }
+
+.text-middle {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
 </style>

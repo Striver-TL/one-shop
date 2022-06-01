@@ -1,27 +1,20 @@
 <template>
   <div class="container-content">
     <div class="banner float-children">
-      <div class="category"></div>
-      <div class="slideshow">
-        <ul class="slideshow-list">
-          <transition name="fade">
-            <li><a href=""><img src="@/static/ban1.jpg" alt=""></a></li>
-          </transition>
-        </ul>
-        <div class="slidesohw-btns"></div>
-        <div class="slideshow-sidebtn">
-
-        </div>
-      </div>
+      <index-category></index-category>
+      <index-banner></index-banner>
     </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import IndexBanner from "@/components/IndexBanner.vue";
+import IndexCategory from "@/components/IndexCategory.vue";
+
 export default defineComponent({
+  components: { IndexBanner, IndexCategory },
   name: "IndexContent",
-  setup() {},
 });
 </script>
 
@@ -36,21 +29,7 @@ $banner-height: 400px;
   }
   .category {
     width: 210px;
-    background: #B01D1D;
-  }
-
-  .slideshow {
-    width: 740px;
-    margin: 0 12px;
-
-    a {
-      display: block;
-    }
-
-    img {
-      width: 100%;
-      height: $banner-height;
-    }
+    background: #b01d1d;
   }
 }
 </style>

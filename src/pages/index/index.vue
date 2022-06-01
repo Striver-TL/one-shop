@@ -6,14 +6,14 @@
 
 <script>
 import { defineComponent } from "vue";
-import IndexHeader from "@/components/IndexHeader.vue"
+import IndexHeader from "@/components/IndexHeader.vue";
 
 export default defineComponent({
   name: "IndexPage",
   setup() {},
   components: {
-    IndexHeader
-  }
+    IndexHeader,
+  },
 });
 </script>
 

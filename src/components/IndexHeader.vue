@@ -74,7 +74,9 @@
           <li><a href="javascript: void(0)">1号海购</a></li>
           <li><a href="javascript: void(0)">团购</a></li>
         </ul>
-        <a href="javascript:void(0)" class="phonelink float-right">手机下单惊喜多!</a>
+        <a href="javascript:void(0)" class="phonelink float-right"
+          >手机下单惊喜多!</a
+        >
       </div>
     </div>
   </div>
@@ -187,6 +189,7 @@ export default defineComponent({
     a {
       color: #3e3e3e;
       transition: all 0.1s ease;
+      font-weight: bold;
     }
 
     a:hover {
@@ -201,11 +204,11 @@ export default defineComponent({
   }
 
   .phonelink {
-      font-size: 0;
-      width: 115px;
-      height: 30px;
-      background: url("@/static/phone.png") 0 no-repeat;
-      margin-top: 5px;
+    font-size: 0;
+    width: 115px;
+    height: 30px;
+    background: url("@/static/phone.png") 0 no-repeat;
+    margin-top: 5px;
   }
 }
 </style>

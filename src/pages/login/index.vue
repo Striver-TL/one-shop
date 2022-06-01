@@ -42,6 +42,10 @@ export default defineComponent({
 .login {
   font-size: 12px;
 
+  .container {
+    width: 1200px;
+  }
+
   /* 头部样式 */
   .header {
     padding: 10px 0;

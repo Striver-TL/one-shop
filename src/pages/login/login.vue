@@ -82,7 +82,7 @@ export default defineComponent({
   background: #fcfcfc;
   /* 缩进距离 */
   .container {
-    padding: 30px 112px;
+    width: 1000px;
     background: url("@/static/loadimg.jpg") 112px 30px no-repeat;
   }
 

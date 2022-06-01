@@ -11,6 +11,7 @@ import LoginIndex from "@/pages/login/index";
 import Login from "@/pages/login/login";
 import Register from "@/pages/login/register";
 import IndexContent from "@/pages/index/content";
+import IndexProduct from "@/pages/index/product";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
         path: "/index/index",
         name: "indexContent",
         component: IndexContent,
+      },
+      {
+        path: "/index/product",
+        name: "indexProduct",
+        component: IndexProduct,
       },
     ],
   },

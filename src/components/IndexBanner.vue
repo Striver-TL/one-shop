@@ -1,0 +1,196 @@
+<template>
+  <div class="slideshow" @mouseenter="stopPlay" @mouseleave="startPlay">
+    <ul class="slideshow-list">
+      <transition name="fade" v-for="(item, index) in banners" :key="index">
+        <li v-show="showIndex === index">
+          <router-link
+            :to="{
+              name: 'indexProduct',
+              query: {
+                id: item.id,
+              },
+            }"
+            ><img :src="item.src" alt=""
+          /></router-link>
+        </li>
+      </transition>
+    </ul>
+    <div class="slideshow-btns">
+      <span
+        :class="{
+          checked: showIndex === index,
+        }"
+        v-for="(item, index) in banners"
+        :key="index"
+        @mouseenter="showIndex = index"
+        >{{ index + 1 }}</span
+      >
+    </div>
+    <div class="slideshow-sidebtn">
+      <span class="sidebtn-left" @click="toChange(-1)"></span>
+      <span class="sidebtn-right" @click="toChange(1)"></span>
+    </div>
+  </div>
+</template>
+
+<script>
+import { defineComponent, reactive, ref } from "vue";
+import createAntiShake from "@/util/createAntiShake";
+
+export default defineComponent({
+  name: "IndexBanner",
+  setup() {
+    const banners = reactive([
+      {
+        src: require("@/static/ban1.jpg"),
+        id: "1",
+      },
+      {
+        src: require("@/static/nban.jpg"),
+        id: "2",
+      },
+      {
+        src: require("@/static/de2.jpg"),
+        id: "3",
+      },
+    ]);
+    const showIndex = ref(0);
+
+    // 防抖跳转
+    const toChange = createAntiShake((num) => {
+      // 三目运算符
+      // 首先判断num正负
+      // 正数边界：banners.length - 1
+      // 负数边界：0
+      num > 0
+        ? showIndex.value < banners.length - 1
+          ? (showIndex.value += num)
+          : (showIndex.value = 0)
+        : showIndex.value > 0
+        ? (showIndex.value += num)
+        : (showIndex.value = banners.length - 1);
+    }, 800);
+
+    let timer = null;
+    // 自动轮播
+    const startPlay = () => {
+      if (timer) return;
+      timer = setInterval(toChange, 3000, 1);
+    };
+
+    // 停止自动轮播
+    const stopPlay = () => {
+      if (!timer) return;
+      clearInterval(timer);
+      timer = null;
+    };
+
+    return {
+      showIndex,
+      banners,
+      toChange,
+      startPlay,
+      stopPlay,
+    };
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+$banner-height: 400px;
+.slideshow {
+  width: 740px;
+  margin: 0 12px;
+  position: relative;
+
+  .slideshow-list {
+    li {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    a {
+      display: block;
+    }
+
+    img {
+      width: 100%;
+      height: $banner-height;
+    }
+
+    .fade-leave-active,
+    .fade-enter-active {
+      transition: opacity 0.8s ease;
+    }
+
+    .fade-leave-from,
+    .fade-enter-to {
+      opacity: 1;
+    }
+
+    .fade-leave-to,
+    .fade-enter-from {
+      opacity: 0;
+    }
+  }
+
+  .slideshow-btns {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    text-align: center;
+
+    span {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: #ccc0b3;
+      border-radius: 10px;
+      margin: 0 4px;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    span.checked {
+      background: #fff;
+    }
+  }
+
+  .slideshow-sidebtn {
+    & > span {
+      display: block;
+      position: absolute;
+      top: 50%;
+      width: 32px;
+      height: 60px;
+      margin-top: -30px;
+      background-position: 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transition: background 0.3s ease;
+    }
+
+    & > span:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+
+    .sidebtn-left {
+      left: 0;
+      background-image: url("@/static/b_left.png");
+    }
+
+    .sidebtn-right {
+      right: 0;
+      background-image: url("@/static/b_right.png");
+    }
+  }
+}
+</style>
