@@ -1,59 +1,55 @@
 <template>
   <div class="slideshow" @mouseenter="stopPlay" @mouseleave="startPlay">
-    <ul class="slideshow-list">
-      <transition name="fade" v-for="(item, index) in banners" :key="index">
-        <li v-show="showIndex === index">
-          <router-link
-            :to="{
-              name: 'indexProduct',
-              query: {
-                id: item.id,
-              },
+    <LazyBlock @success="startPlay">
+      <template v-slot:default="slotProps">
+        <ul class="slideshow-list">
+          <transition name="fade" v-for="(item, index) in banners" :key="index">
+            <li v-show="showIndex === index">
+              <router-link
+                :to="{
+                  name: 'indexProduct',
+                  query: {
+                    id: item.id,
+                  },
+                }"
+                ><lazy-image
+                  :src="item.src"
+                  @success="canLoad(slotProps.toLoad)"
+              /></router-link>
+            </li>
+          </transition>
+        </ul>
+        <div class="slideshow-btns">
+          <span
+            :class="{
+              checked: showIndex === index,
             }"
-            ><img :src="item.src" alt=""
-          /></router-link>
-        </li>
-      </transition>
-    </ul>
-    <div class="slideshow-btns">
-      <span
-        :class="{
-          checked: showIndex === index,
-        }"
-        v-for="(item, index) in banners"
-        :key="index"
-        @mouseenter="showIndex = index"
-        >{{ index + 1 }}</span
-      >
-    </div>
-    <div class="slideshow-sidebtn">
-      <span class="sidebtn-left" @click="toChange(-1)"></span>
-      <span class="sidebtn-right" @click="toChange(1)"></span>
-    </div>
+            v-for="(item, index) in banners"
+            :key="index"
+            @mouseenter="showIndex = index"
+            >{{ index + 1 }}</span
+          >
+        </div>
+        <div class="slideshow-sidebtn">
+          <span class="sidebtn-left" @click="toChange(-1)"></span>
+          <span class="sidebtn-right" @click="toChange(1)"></span>
+        </div>
+      </template>
+    </LazyBlock>
   </div>
 </template>
 
 <script>
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, ref, onBeforeMount } from "vue";
+import { path, sendRequest } from "@/util/sendRequest";
 import createAntiShake from "@/util/createAntiShake";
+import LazyImage from "@/components/LazyImage";
+import LazyBlock from "@/components/LazyBlock";
 
 export default defineComponent({
   name: "IndexBanner",
   setup() {
-    const banners = reactive([
-      {
-        src: require("@/static/ban1.jpg"),
-        id: "1",
-      },
-      {
-        src: require("@/static/nban.jpg"),
-        id: "2",
-      },
-      {
-        src: require("@/static/de2.jpg"),
-        id: "3",
-      },
-    ]);
+    const banners = reactive([]);
     const showIndex = ref(0);
 
     // 防抖跳转
@@ -85,13 +81,37 @@ export default defineComponent({
       timer = null;
     };
 
+    // 已完成加载
+    const loadCount = ref(0);
+    const canLoad = (callback) => {
+      (loadCount.value += 1) >= banners.length && callback();
+    };
+
+    onBeforeMount(() => {
+      sendRequest({
+        url: "getBanner",
+        method: "POST"
+      }).then((data) => {
+        data.forEach(e => {
+          e.src = `${path}/${e.src}`
+        })
+        banners.push(...data)
+      });
+    });
+
     return {
       showIndex,
       banners,
       toChange,
       startPlay,
       stopPlay,
+      canLoad,
+      loadCount,
     };
+  },
+  components: {
+    LazyImage,
+    LazyBlock,
   },
 });
 </script>
@@ -102,6 +122,13 @@ $banner-height: 400px;
   width: 740px;
   margin: 0 12px;
   position: relative;
+
+  .unload {
+    background: #f4f4f4;
+    & > * {
+      display: none;
+    }
+  }
 
   .slideshow-list {
     li {
@@ -117,7 +144,7 @@ $banner-height: 400px;
       display: block;
     }
 
-    img {
+    .image {
       width: 100%;
       height: $banner-height;
     }

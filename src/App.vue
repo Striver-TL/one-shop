@@ -10,7 +10,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 * {
   padding: 0;
   margin: 0;
@@ -72,5 +72,33 @@ input {
   display: flex;
   flex-flow: column;
   justify-content: center;
+}
+
+.unload {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0)
+    );
+    animation: unload 2s ease infinite;
+  }
+}
+
+@keyframes unload {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 </style>

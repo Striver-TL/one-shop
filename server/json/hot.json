@@ -1,0 +1,34 @@
+[
+    {
+        "id": "100",
+        "src": "hot1.jpg",
+        "name": "德国进口",
+        "desc": "德亚全脂纯牛奶200ml*48盒",
+        "price": 189,
+        "label": "26R"
+    },
+    {
+        "id": "101",
+        "src": "hot2.jpg",
+        "name": "iphone 6s",
+        "desc": "Apple/苹果iPhone 6s Plus公开版",
+        "price": 5288,
+        "label": "25R"
+    },
+    {
+        "id": "102",
+        "src": "hot3.jpg",
+        "name": "倩碧特惠组合套装",
+        "desc": "倩碧补水组合套装8折促销",
+        "price": 368,
+        "label": "18R"
+    },
+    {
+        "id": "103",
+        "src": "hot4.jpg",
+        "name": "品利特级橄榄油",
+        "desc": "750ml*4瓶装组合 西班牙原装进口",
+        "price": 280,
+        "label": "30R"
+    }
+]

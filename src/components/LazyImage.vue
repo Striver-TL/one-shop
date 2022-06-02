@@ -1,6 +1,6 @@
 <template>
 <div class="image">
-    <img :src="imgData.src" alt="#" v-if="isLoad"/>
+    <img :src="src" alt="#" v-if="isLoad"/>
 </div>
 </template>
 
@@ -9,8 +9,8 @@ import { defineComponent, ref, onMounted } from "vue";
 export default defineComponent({
   name: "LazyImage",
   props: {
-      imgData: {
-          type: Object,
+      src: {
+          type: String,
           required: true
       }
   },
@@ -19,7 +19,7 @@ export default defineComponent({
     
       onMounted(() => {
         const image = new Image()
-        image.src = prop.imgData.src
+        image.src = prop.src
         image.onload = () => {
             isLoad.value = true
             emit("success")
@@ -36,3 +36,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.image {
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+</style>
