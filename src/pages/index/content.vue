@@ -5,9 +5,7 @@
       <index-banner></index-banner>
       <index-card class="float-right"></index-card>
     </div>
-    <div class="hotlink">
-      <IndexHot></IndexHot>
-    </div>
+    <IndexHot></IndexHot>
   </div>
 </template>
 
@@ -15,11 +13,11 @@
 import { defineComponent } from "vue";
 import IndexBanner from "@/components/IndexBanner.vue";
 import IndexCategory from "@/components/IndexCategory.vue";
-import IndexCard from "@/components/IndexCard"
-import IndexHot from "@/components/IndexHot"
+import IndexCard from "@/components/IndexCard";
+import IndexHot from "@/components/IndexHot";
 
 export default defineComponent({
-  components: { IndexBanner, IndexCategory, IndexCard, IndexHot},
+  components: { IndexBanner, IndexCategory, IndexCard, IndexHot },
   name: "IndexContent",
 });
 </script>
