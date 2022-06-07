@@ -182,6 +182,11 @@ export default defineComponent({
     background: #ff3c3c;
   }
 
+  ul {
+    height: 45px;
+    overflow: hidden;
+  }
+
   li {
     width: 80px;
     text-align: center;

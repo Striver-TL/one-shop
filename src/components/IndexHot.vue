@@ -2,21 +2,31 @@
   <div class="hot">
     <LazyBlock class="float-clear">
       <template v-slot:default="slotProps">
+        <div class="left-product float-left" v-if="leftProduct">
+          <router-link :to="{
+            path: '/index/product',
+            query: {
+              id: leftProduct.id
+            }
+          }">
+            <lazy-image :src="leftProduct.src" @success="loadImage(slotProps.toLoad)"></lazy-image>
+            <span class="float-children">
+              <span class="hot-price">{{ leftProduct.price.toFixed(2) }}</span>
+              <span class="hot-label">{{ leftProduct.label }}</span>
+            </span>
+          </router-link>
+        </div>
+        <div class="left-product float-left" v-else></div>
         <div class="hot-list float-right">
           <ul v-if="products.length">
             <li v-for="(item, index) in products" :key="index">
-              <router-link
-                :to="{
-                  path: '/index/product',
-                  query: {
-                    id: item.id,
-                  },
-                }"
-              >
-                <LazyImage
-                  :src="item.src"
-                  @success="loadImage(slotProps.toLoad)"
-                ></LazyImage>
+              <router-link :to="{
+                path: '/index/product',
+                query: {
+                  id: item.id,
+                },
+              }">
+                <LazyImage :src="item.src" @success="loadImage(slotProps.toLoad)"></LazyImage>
                 <span class="hot-name">{{ item.name }}</span>
                 <span class="hot-desc">{{ item.desc }}</span>
                 <span>
@@ -56,7 +66,7 @@ export default defineComponent({
   name: "IndexHot",
   setup() {
     const products = reactive([]);
-
+    const leftProduct = ref(undefined)
     onBeforeMount(() => {
       sendRequest({
         url: "getHot",
@@ -65,6 +75,7 @@ export default defineComponent({
         data.forEach((e) => {
           e.src = `${path}/${e.src}`;
         });
+        leftProduct.value = data.splice(0, 1)[0]
         products.push(...data);
       });
     });
@@ -73,6 +84,7 @@ export default defineComponent({
 
     return {
       products,
+      leftProduct,
       loadImage(callback) {
         (loadCount.value += 1) >= products.length && callback();
       },
@@ -87,12 +99,14 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 $hot-border-color: #eaeaea;
+
 .hot {
   margin: 20px 0;
 
   .unload {
-    li > div {
+    li>div {
       padding: 0 20px;
+
       .image,
       .hot-name,
       .hot-desc,
@@ -106,7 +120,70 @@ $hot-border-color: #eaeaea;
     }
   }
 
+
+  .left-product {
+    background: #f9f9f9;
+    width: 210px;
+    height: 240px;
+
+    a {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #D8EEFC;
+      padding-top: 5px;
+
+      .image {
+        width: 188px;
+        height: 188px;
+      }
+
+      span {
+        display: block;
+      }
+
+      $span-height: 20px;
+
+      &>span {
+        position: absolute;
+        left: 50%;
+        bottom: 10px;
+        transform: translateX(-50%);
+        width: 100px;
+        height: $span-height;
+
+        .hot-price {
+          width: 60px;
+          height: 100%;
+          line-height: $span-height;
+          background: orangered;
+          color: #fff;
+          text-align: center;
+          font-size: 14px;
+          &::before {
+            content: "￥";
+            font-size: 12px;
+          }
+        }
+
+        .hot-label {
+          width: 40px;
+          text-align: right;
+          font-size: 12px;
+          line-height: $span-height;
+          color: orangered;
+        }
+
+      }
+
+    }
+
+  }
+
+
   .hot-list {
+    position: relative;
     width: 977px;
 
     ul {
@@ -116,10 +193,11 @@ $hot-border-color: #eaeaea;
     }
 
     li {
-      flex: 0 0 245px;
+      flex: 0 0 245.5px;
       margin-left: -1px;
-      & > a,
-      & > * > span {
+
+      &>a,
+      &>*>span {
         display: block;
         text-align: center;
       }
@@ -129,6 +207,21 @@ $hot-border-color: #eaeaea;
         border: 1px solid #eaeaea;
         transition: border 0.3s ease;
 
+        &::after {
+          content: "热门";
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          display: block;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          background: orangered;
+          border-radius: 20px;
+          color: #fff;
+          font-size: 14px;
+        }
+
         .hot-price::before {
           content: "￥";
           font-size: 12px;
@@ -137,9 +230,11 @@ $hot-border-color: #eaeaea;
         &:hover {
           z-index: 1;
           border-color: #f33;
+
           .image {
             opacity: 0.7;
           }
+
           .hot-name {
             color: #f33;
           }
@@ -150,7 +245,7 @@ $hot-border-color: #eaeaea;
     .image {
       width: 160px;
       height: 136px;
-      margin: 0 auto;
+      margin: 10px 0 0;
       margin-bottom: 13px;
       transition: opacity 0.3s ease;
     }
@@ -182,6 +277,34 @@ $hot-border-color: #eaeaea;
       font-size: 10px;
       color: #888;
       padding-left: 12px;
+    }
+  }
+
+  .hot-sidebtn {
+    span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: block;
+      width: 32px;
+      height: 60px;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, .1);
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .3);
+        cursor: pointer;
+      }
+    }
+
+    .hot-leftbtn {
+      left: 0;
+      background: url("@/static/b_left.png") no-repeat center;
+    }
+
+    .hot-rightbtn {
+      right: 0;
+      background: url("@/static/b_right.png") no-repeat center;
     }
   }
 }

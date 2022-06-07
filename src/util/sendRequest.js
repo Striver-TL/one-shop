@@ -4,6 +4,8 @@ import axios from 'axios'
 // 如需其它设备访问需要指定ip地址
 const ip = "http://localhost:8085"
 
+// const ip = "http://192.168.137.1:8085"
+
 export const path = ip;
 
 export const sendRequest = (option) => {

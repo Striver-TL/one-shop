@@ -90,6 +90,7 @@ input {
       rgba(255, 255, 255, 0)
     );
     animation: unload 2s ease infinite;
+    z-index: 3;
   }
 }
 
