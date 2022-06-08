@@ -14,8 +14,15 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "LazyBlock",
+  props: {
+    load: {
+      type: Boolean,
+      required: false,
+    }
+  },
   setup(prop, { emit }) {
-    const isLoad = ref(true);
+    const isLoad = ref(typeof prop.load === "boolean" ? prop.load : true);
+
     return {
       toLoad() {
         isLoad.value = false;

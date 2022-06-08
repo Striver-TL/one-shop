@@ -1,15 +1,15 @@
 <template>
   <div class="hot">
-    <LazyBlock class="float-clear">
-      <template v-slot:default="slotProps">
-        <div class="left-product float-left" v-if="leftProduct">
+    <LazyBlock :load="products.length > loadCount" class="float-clear">
+      <template v-slot:default>
+        <div class="left-product float-left" v-if="leftProduct && products.length <= loadCount">
           <router-link :to="{
             path: '/index/product',
             query: {
               id: leftProduct.id
             }
           }">
-            <lazy-image :src="leftProduct.src" @success="loadImage(slotProps.toLoad)"></lazy-image>
+            <lazy-image :src="leftProduct.src"></lazy-image>
             <span class="float-children">
               <span class="hot-price">{{ leftProduct.price.toFixed(2) }}</span>
               <span class="hot-label">{{ leftProduct.label }}</span>
@@ -18,7 +18,7 @@
         </div>
         <div class="left-product float-left" v-else></div>
         <div class="hot-list float-right">
-          <ul v-if="products.length">
+          <ul v-if="products.length <= loadCount">
             <li v-for="(item, index) in products" :key="index">
               <router-link :to="{
                 path: '/index/product',
@@ -26,7 +26,7 @@
                   id: item.id,
                 },
               }">
-                <LazyImage :src="item.src" @success="loadImage(slotProps.toLoad)"></LazyImage>
+                <LazyImage :src="item.src"></LazyImage>
                 <span class="hot-name">{{ item.name }}</span>
                 <span class="hot-desc">{{ item.desc }}</span>
                 <span>
@@ -58,7 +58,7 @@
 
 <script>
 import { defineComponent, reactive, onBeforeMount, ref } from "vue";
-import { path, sendRequest } from "@/util/sendRequest";
+import { sendRequest } from "@/util/sendRequest";
 import LazyBlock from "@/components/LazyBlock";
 import LazyImage from "@/components/LazyImage";
 
@@ -67,16 +67,27 @@ export default defineComponent({
   setup() {
     const products = reactive([]);
     const leftProduct = ref(undefined)
+    const loadImage = () => {
+      loadCount.value += 1;
+    }
     onBeforeMount(() => {
       sendRequest({
         url: "getHot",
         method: "POST",
       }).then((data) => {
         data.forEach((e) => {
-          e.src = `${path}/${e.src}`;
+          e.src = require(`@/static/${e.src}`)
+
         });
         leftProduct.value = data.splice(0, 1)[0]
         products.push(...data);
+        return data.map(e => e.src)
+      }).then(src => {
+        src.forEach(e => {
+          let image = new Image();
+          image.src = e;
+          image.onload = loadImage
+        })
       });
     });
 
@@ -85,9 +96,8 @@ export default defineComponent({
     return {
       products,
       leftProduct,
-      loadImage(callback) {
-        (loadCount.value += 1) >= products.length && callback();
-      },
+      loadCount,
+      loadImage,
     };
   },
   components: {
@@ -161,6 +171,7 @@ $hot-border-color: #eaeaea;
           color: #fff;
           text-align: center;
           font-size: 14px;
+
           &::before {
             content: "￥";
             font-size: 12px;

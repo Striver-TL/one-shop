@@ -5,30 +5,21 @@
         <ul class="slideshow-list">
           <transition name="fade" v-for="(item, index) in banners" :key="index">
             <li v-show="showIndex === index">
-              <router-link
-                :to="{
-                  name: 'indexProduct',
-                  query: {
-                    id: item.id,
-                  },
-                }"
-                ><lazy-image
-                  :src="item.src"
-                  @success="canLoad(slotProps.toLoad)"
-              /></router-link>
+              <router-link :to="{
+                name: 'indexProduct',
+                query: {
+                  id: item.id,
+                },
+              }">
+                <lazy-image :src="item.src" @success="canLoad(slotProps.toLoad)" />
+              </router-link>
             </li>
           </transition>
         </ul>
         <div class="slideshow-btns">
-          <span
-            :class="{
-              checked: showIndex === index,
-            }"
-            v-for="(item, index) in banners"
-            :key="index"
-            @mouseenter="showIndex = index"
-            >{{ index + 1 }}</span
-          >
+          <span :class="{
+            checked: showIndex === index,
+          }" v-for="(item, index) in banners" :key="index" @mouseenter="showIndex = index">{{ index + 1 }}</span>
         </div>
         <div class="slideshow-sidebtn">
           <span class="sidebtn-left" @click="toChange(-1)"></span>
@@ -41,7 +32,7 @@
 
 <script>
 import { defineComponent, reactive, ref, onBeforeMount } from "vue";
-import { path, sendRequest } from "@/util/sendRequest";
+import { sendRequest } from "@/util/sendRequest";
 import createAntiShake from "@/util/createAntiShake";
 import LazyImage from "@/components/LazyImage";
 import LazyBlock from "@/components/LazyBlock";
@@ -63,8 +54,8 @@ export default defineComponent({
           ? (showIndex.value += num)
           : (showIndex.value = 0)
         : showIndex.value > 0
-        ? (showIndex.value += num)
-        : (showIndex.value = banners.length - 1);
+          ? (showIndex.value += num)
+          : (showIndex.value = banners.length - 1);
     }, 800);
 
     let timer = null;
@@ -93,7 +84,7 @@ export default defineComponent({
         method: "POST"
       }).then((data) => {
         data.forEach(e => {
-          e.src = `${path}/${e.src}`
+          e.src = require(`@/static/${e.src}`)
         })
         banners.push(...data)
       });
@@ -118,6 +109,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 $banner-height: 400px;
+
 .slideshow {
   width: 740px;
   margin: 0 12px;
@@ -125,7 +117,8 @@ $banner-height: 400px;
 
   .unload {
     background: #f4f4f4;
-    & > * {
+
+    &>* {
       display: none;
     }
   }
@@ -191,7 +184,7 @@ $banner-height: 400px;
   }
 
   .slideshow-sidebtn {
-    & > span {
+    &>span {
       display: block;
       position: absolute;
       top: 50%;
@@ -204,7 +197,7 @@ $banner-height: 400px;
       transition: background 0.3s ease;
     }
 
-    & > span:hover {
+    &>span:hover {
       background-color: rgba(0, 0, 0, 0.5);
       cursor: pointer;
     }
