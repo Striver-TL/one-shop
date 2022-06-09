@@ -1,32 +1,41 @@
 <template>
   <div class="hot">
     <LazyBlock :load="products.length > loadCount" class="float-clear">
-      <template v-slot:default>
-        <div class="left-product float-left" v-if="leftProduct && products.length <= loadCount">
-          <router-link :to="{
-            path: '/index/product',
-            query: {
-              id: leftProduct.id
-            }
-          }">
-            <lazy-image :src="leftProduct.src"></lazy-image>
+      <template v-slot:default="slotProps">
+        <div class="left-product float-left" v-if="leftProduct">
+          <router-link
+            :to="{
+              path: '/index/product',
+              query: {
+                id: leftProduct.id,
+              },
+            }"
+          >
+            <lazy-image
+              :src="leftProduct.src"
+              @success="loadImage(slotProps.toLoad)"
+            ></lazy-image>
             <span class="float-children">
               <span class="hot-price">{{ leftProduct.price.toFixed(2) }}</span>
               <span class="hot-label">{{ leftProduct.label }}</span>
             </span>
           </router-link>
         </div>
-        <div class="left-product float-left" v-else></div>
         <div class="hot-list float-right">
-          <ul v-if="products.length <= loadCount">
+          <ul v-if="products.length">
             <li v-for="(item, index) in products" :key="index">
-              <router-link :to="{
-                path: '/index/product',
-                query: {
-                  id: item.id,
-                },
-              }">
-                <LazyImage :src="item.src"></LazyImage>
+              <router-link
+                :to="{
+                  path: '/index/product',
+                  query: {
+                    id: item.id,
+                  },
+                }"
+              >
+                <LazyImage
+                  :src="item.src"
+                  @success="loadImage(slotProps.toLoad)"
+                ></LazyImage>
                 <span class="hot-name">{{ item.name }}</span>
                 <span class="hot-desc">{{ item.desc }}</span>
                 <span>
@@ -34,16 +43,6 @@
                   <span class="hot-label">{{ item.label }}</span>
                 </span>
               </router-link>
-            </li>
-          </ul>
-          <ul v-else>
-            <li v-for="index in 4" :key="index">
-              <div>
-                <span class="image"></span>
-                <span class="hot-name"></span>
-                <span class="hot-desc"></span>
-                <span class="hot-price"></span>
-              </div>
             </li>
           </ul>
           <div class="hot-sidebtn">
@@ -66,32 +65,26 @@ export default defineComponent({
   name: "IndexHot",
   setup() {
     const products = reactive([]);
-    const leftProduct = ref(undefined)
-    const loadImage = () => {
-      loadCount.value += 1;
-    }
+    const leftProduct = ref(undefined);
+    const loadCount = ref(-Infinity);
+    const loadImage = (callback) => {
+      (loadCount.value += 1) >= products.length &&
+        Object.prototype.toString.call(callback) === "[object Function]" &&
+        callback();
+    };
     onBeforeMount(() => {
       sendRequest({
         url: "getHot",
         method: "POST",
       }).then((data) => {
         data.forEach((e) => {
-          e.src = require(`@/static/${e.src}`)
-
+          e.src = require(`@/static/${e.src}`);
         });
-        leftProduct.value = data.splice(0, 1)[0]
+        loadCount.value = 0;
+        leftProduct.value = data.splice(0, 1)[0];
         products.push(...data);
-        return data.map(e => e.src)
-      }).then(src => {
-        src.forEach(e => {
-          let image = new Image();
-          image.src = e;
-          image.onload = loadImage
-        })
       });
     });
-
-    const loadCount = ref(0);
 
     return {
       products,
@@ -111,16 +104,35 @@ export default defineComponent({
 $hot-border-color: #eaeaea;
 
 .hot {
-  margin: 20px 0;
-
+  height: 280px;
+  padding: 20px 0;
   .unload {
-    li>div {
+    .image > * {
+      opacity: 0 !important;
+    }
+
+    .left-product {
+      background: #f9f9f9;
+      & > * {
+        visibility: hidden;
+      }
+    }
+
+    li > * {
       padding: 0 20px;
+      border: none !important;
+
+      & > * *,
+      & *::after,
+      & *::before,
+      &::after,
+      &::before {
+        visibility: hidden;
+      }
 
       .image,
-      .hot-name,
-      .hot-desc,
-      .hot-price {
+      & > span {
+        font-size: 0 !important;
         background: #f9f9f9;
       }
     }
@@ -129,7 +141,6 @@ $hot-border-color: #eaeaea;
       display: none;
     }
   }
-
 
   .left-product {
     background: #f9f9f9;
@@ -141,7 +152,7 @@ $hot-border-color: #eaeaea;
       position: relative;
       width: 100%;
       height: 100%;
-      background: #D8EEFC;
+      background: #d8eefc;
       padding-top: 5px;
 
       .image {
@@ -155,7 +166,7 @@ $hot-border-color: #eaeaea;
 
       $span-height: 20px;
 
-      &>span {
+      & > span {
         position: absolute;
         left: 50%;
         bottom: 10px;
@@ -185,13 +196,9 @@ $hot-border-color: #eaeaea;
           line-height: $span-height;
           color: orangered;
         }
-
       }
-
     }
-
   }
-
 
   .hot-list {
     position: relative;
@@ -207,8 +214,8 @@ $hot-border-color: #eaeaea;
       flex: 0 0 245.5px;
       margin-left: -1px;
 
-      &>a,
-      &>*>span {
+      & > a,
+      & > * > span {
         display: block;
         text-align: center;
       }
@@ -300,10 +307,10 @@ $hot-border-color: #eaeaea;
       width: 32px;
       height: 60px;
       z-index: 2;
-      background-color: rgba(0, 0, 0, .1);
+      background-color: rgba(0, 0, 0, 0.1);
 
       &:hover {
-        background-color: rgba(0, 0, 0, .3);
+        background-color: rgba(0, 0, 0, 0.3);
         cursor: pointer;
       }
     }

@@ -1,40 +1,60 @@
 <template>
   <div
+    ref="lazyElement"
     :class="{
       'lazy-block': true,
-      unload: isLoad,
+      'unload': isLoad,
     }"
   >
-    <slot name="default" :toLoad="toLoad"></slot>
+    <slot name="default" :toLoad="toLoad" v-if="isShow"></slot>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 
 export default defineComponent({
   name: "LazyBlock",
   props: {
     load: {
       type: Boolean,
-      required: false,
-    }
+      default: true
+    },
   },
   setup(prop, { emit }) {
-    const isLoad = ref(typeof prop.load === "boolean" ? prop.load : true);
+    const isLoad = ref(Object.prototype.toString.call(prop.load) === "[object Boolean]" ? prop.load : true);
+    console.log(isLoad.value)
+    const isShow = ref(false);
+    const lazyElement = ref(null);
+
+    onMounted(() => {
+      const eventFunc = () => {
+        const top = lazyElement.value.offsetTop;
+        window.scrollY >= top - window.innerHeight &&
+          window.scrollY <= top + window.innerHeight &&
+          (isShow.value = true) &&
+          window.removeEventListener("scroll", eventFunc);
+      };
+      window.addEventListener("scroll", eventFunc);
+      eventFunc();
+    });
 
     return {
       toLoad() {
-        isLoad.value = false;
-        emit("success");
+        setTimeout(() => {
+          isLoad.value = false;
+          emit("success");
+        }, 1000);
       },
       isLoad,
+      lazyElement,
+      isShow,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .lazy-block {
   width: 100%;
   height: 100%;

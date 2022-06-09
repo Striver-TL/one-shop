@@ -37,7 +37,15 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.unload {
+    .image {
+        img {
+            display: none;
+        }
+    }
+}
+
 .image {
     img {
         width: 100%;

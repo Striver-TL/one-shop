@@ -6,11 +6,8 @@
       <index-card class="float-right"></index-card>
     </div>
     <IndexHot></IndexHot>
-    <LazyBlock>
-      <template v-slot:default="slotProps">
-        <LazyImage :src="require(`@/static/mban_2.jpg`)" @success="slotProps.toLoad()"></LazyImage>
-      </template>
-    </LazyBlock>
+    <IndexAdvert :src="require(`@/static/mban_2.jpg`)"></IndexAdvert>
+    <IndexFloorNav></IndexFloorNav>
   </div>
 </template>
 
@@ -20,11 +17,17 @@ import IndexBanner from "@/components/IndexBanner.vue";
 import IndexCategory from "@/components/IndexCategory.vue";
 import IndexCard from "@/components/IndexCard";
 import IndexHot from "@/components/IndexHot";
-import LazyBlock from "@/components/LazyBlock.vue";
-import LazyImage from "@/components/LazyImage.vue";
-
+import IndexFloorNav from "@/components/IndexFloorNav.vue";
+import IndexAdvert from "@/components/IndexAdvert.vue";
 export default defineComponent({
-  components: { IndexBanner, IndexCategory, IndexCard, IndexHot, LazyBlock, LazyImage },
+  components: {
+    IndexFloorNav,
+    IndexBanner,
+    IndexCategory,
+    IndexCard,
+    IndexHot,
+    IndexAdvert
+  },
   name: "IndexContent",
 });
 </script>
