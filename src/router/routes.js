@@ -16,7 +16,7 @@ import IndexProduct from "@/pages/index/product";
 const routes = [
   {
     path: "/",
-    redirect: "/login",
+    redirect: "/index",
   },
   {
     path: "/index",

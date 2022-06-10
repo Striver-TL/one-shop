@@ -7,6 +7,12 @@
 <script>
 export default {
   name: "App",
+  beforeCreate() {
+    console.time();
+  },
+  mounted() {
+    console.timeEnd();
+  },
 };
 </script>
 

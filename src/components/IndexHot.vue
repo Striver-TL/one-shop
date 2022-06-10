@@ -1,6 +1,6 @@
 <template>
   <div class="hot">
-    <LazyBlock :load="products.length > loadCount" class="float-clear">
+    <LazyBlock :load="products.length > loadCount" @show="getData" class="float-clear">
       <template v-slot:default="slotProps">
         <div class="left-product float-left" v-if="leftProduct">
           <router-link
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, onBeforeMount, ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { sendRequest } from "@/util/sendRequest";
 import LazyBlock from "@/components/LazyBlock";
 import LazyImage from "@/components/LazyImage";
@@ -72,7 +72,7 @@ export default defineComponent({
         Object.prototype.toString.call(callback) === "[object Function]" &&
         callback();
     };
-    onBeforeMount(() => {
+    const getData = () => {
       sendRequest({
         url: "getHot",
         method: "POST",
@@ -84,13 +84,14 @@ export default defineComponent({
         leftProduct.value = data.splice(0, 1)[0];
         products.push(...data);
       });
-    });
+    };
 
     return {
       products,
       leftProduct,
       loadCount,
       loadImage,
+      getData,
     };
   },
   components: {

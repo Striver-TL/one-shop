@@ -1,164 +1,212 @@
 <template>
   <div class="floornav">
-    <div class="floor-content">
-      <div class="floor-top float-clear">
-        <div class="floor-title float-left float-children">
-          <span class="floor-title-back">1F</span>
-          <h2>进口·生鲜</h2>
-        </div>
-        <div class="floor-link float-right">
-          <ul class="float-children">
-            <li>
-              <RouterLink
-                :to="{
-                  path: '/index/product',
-                  query: {
-                    id: '999',
-                  },
-                }"
-                >进口咖啡</RouterLink
-              >
-            </li>
-            <li>
-              <RouterLink
-                :to="{
-                  path: '/index/product',
-                  query: {
-                    id: '999',
-                  },
-                }"
-                >进口酒</RouterLink
-              >
-            </li>
-            <li>
-              <RouterLink
-                :to="{
-                  path: '/index/product',
-                  query: {
-                    id: '999',
-                  },
-                }"
-                >进口母婴</RouterLink
-              >
-            </li>
-            <li>
-              <RouterLink
-                :to="{
-                  path: '/index/product',
-                  query: {
-                    id: '999',
-                  },
-                }"
-                >新鲜蔬菜</RouterLink
-              >
-            </li>
-            <li>
-              <RouterLink
-                :to="{
-                  path: '/index/product',
-                  query: {
-                    id: '999',
-                  },
-                }"
-                >新鲜水果</RouterLink
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="float-chilren">
-        <div class="floor-left">
-          <div class="floor-banner">
-            <div class="banner-content">
-              <ul>
-                <transition name="floor">
-                  <li>
-                    <RouterLink
-                      :to="{
-                        path: '/index/product',
-                        query: {
-                          id: '120',
-                        },
-                      }"
-                    >
-                      <LazyImage
-                        :src="require(`@/static/fre_r.jpg`)"
-                      ></LazyImage>
-                    </RouterLink>
-                  </li>
-                </transition>
-              </ul>
+    <LazyBlock
+      v-for="item in 2"
+      :key="item.toString()"
+      @show="getData(item.toString())"
+    >
+      <template v-slot:default="slotProps">
+        <div class="floor-content" v-if="floorData[item - 1]">
+          <div class="floor-top float-clear">
+            <div class="floor-title float-left float-children">
+              <span class="floor-title-back">{{ item }}F</span>
+              <h2>{{ floorData[item - 1].title }}</h2>
             </div>
-            <div class="banner-sidebtn">
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-          <div class="floor-linktool">
-            <div class="linktool-link">
+            <div class="floor-link float-right">
               <ul class="float-children">
-                <li>
-                  <RouterLink to="/index/index">进口水果</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/index/index">奇异果</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/index/index">西柚</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/index/index">海鲜水产</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/index/index">品质牛肉</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/index/index">奶粉</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/index/index">鲜活禽蛋</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/index/index">进口酒</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/index/index">进口奶粉</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/index/index">鲜活禽蛋</RouterLink>
+                <li
+                  v-for="(text, index) in floorData[item - 1].toplink"
+                  :key="index"
+                >
+                  <RouterLink
+                    :to="{
+                      path: '/index/product',
+                      query: {
+                        id: '999',
+                      },
+                    }"
+                    >{{ text }}</RouterLink
+                  >
                 </li>
               </ul>
             </div>
-            <div class="linktool-line">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+          </div>
+          <div class="float-children">
+            <div class="floor-left">
+              <div class="floor-banner">
+                <div class="banner-content">
+                  <ul>
+                    <transition
+                      name="floor"
+                      v-for="(banner, index) in floorData[item - 1].banners"
+                      :key="index"
+                    >
+                      <li>
+                        <RouterLink
+                          :to="{
+                            path: '/index/product',
+                            query: {
+                              id: banner.id,
+                            },
+                          }"
+                        >
+                          <LazyImage
+                            :src="require(`@/static/${banner.src}`)"
+                          ></LazyImage>
+                        </RouterLink>
+                      </li>
+                    </transition>
+                  </ul>
+                </div>
+                <div
+                  class="banner-sidebtn"
+                  v-if="floorData[item - 1].banners.length > 1"
+                >
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div class="floor-linktool">
+                <div class="linktool-link">
+                  <ul class="float-children">
+                    <li
+                      v-for="(text, index) in floorData[item - 1].toollink"
+                      :key="index"
+                    >
+                      <RouterLink to="/index/index">{{ text }}</RouterLink>
+                    </li>
+                  </ul>
+                </div>
+                <div class="linktool-line">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <div class="floor-center">
+              <ul class="float-children">
+                <li
+                  v-for="product in floorData[item - 1].products"
+                  :key="product.id"
+                >
+                  <RouterLink
+                    :to="{
+                      path: '/index/product',
+                      query: {
+                        id: product.id,
+                      },
+                    }"
+                  >
+                    <span class="product-name">{{ product.name }}</span>
+                    <span class="product-price">{{
+                      product.price.toFixed(2)
+                    }}</span>
+                    <LazyImage
+                      :src="require(`@/static/${product.src}`)"
+                    ></LazyImage>
+                  </RouterLink>
+                </li>
+              </ul>
+            </div>
+            <div class="floor-right">
+              <div v-for="item in floorData[item - 1].rightlink" :key="item.id">
+                <RouterLink
+                  :to="{
+                    path: '/index/product',
+                    query: {
+                      id: item.id,
+                    },
+                  }"
+                >
+                  <LazyImage :src="require(`@/static/${item.src}`)"></LazyImage>
+                </RouterLink>
+              </div>
             </div>
           </div>
+          {{ slotProps.toLoad() }}
         </div>
-      </div>
-    </div>
+      </template>
+    </LazyBlock>
   </div>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
+import { sendRequest } from "@/util/sendRequest";
 import LazyImage from "@/components/LazyImage";
+import LazyBlock from "@/components/LazyBlock";
 export default defineComponent({
   name: "IndexFloorNav",
-  setup() {},
+  setup() {
+    const floorData = reactive([]);
+    return {
+      floorData,
+      getData(id) {
+        sendRequest({
+          url: "getFloor",
+          method: "POST",
+          "Content-Type": "application/json",
+          data: {
+            id,
+          },
+        }).then((data) => {
+          if (!data) return;
+          floorData.splice(data.id - 1, 0, data);
+        });
+      },
+    };
+  },
   components: {
     LazyImage,
+    LazyBlock,
   },
 });
 </script>
 
 <style lang="scss" scoped>
-$unload-color: #f9f9f9;
+$unload-color: #f1f1f1;
+
+.unload {
+  .floor-linktool {
+    background-color: transparent !important;
+  }
+
+  .floor-top {
+    border-bottom: 10px solid #fff !important;
+  }
+
+  .floor-right {
+    div {
+      width: 260px;
+      margin: 10px 0;
+    }
+  }
+
+  .floor-top,
+  .floor-banner,
+  .floor-linktool ul,
+  .floor-linktool .linktool-line,
+  .product-name,
+  .product-price,
+  .floor-center a .image,
+  .floor-right div {
+    font-size: 0 !important;
+    background-color: $unload-color !important;
+    & > * {
+      visibility: hidden;
+    }
+  }
+}
+
 .floornav {
-  background: $unload-color;
   $top-height: 50px;
+
+  .floor-content {
+    margin-top: 10px;
+  }
+
   .floor-top {
     height: $top-height;
     overflow: hidden;
@@ -269,6 +317,85 @@ $unload-color: #f9f9f9;
           top: $link-height * 4 - 1;
         }
       }
+    }
+  }
+
+  .floor-center {
+    $product-width: 243px;
+    $product-height: 221px;
+    width: $product-width * 3;
+    height: 440px;
+    overflow: hidden;
+
+    li {
+      width: $product-width;
+      height: $product-height;
+      overflow: hidden;
+
+      &:nth-child(-n + 3) > a {
+        border-bottom: 1px solid #eaeaea;
+      }
+
+      a {
+        &,
+        span {
+          display: block;
+        }
+        border-left: 1px solid #eaeaea;
+        height: 100%;
+        text-align: center;
+        overflow: hidden;
+        .image {
+          transition: opacity 0.3s ease;
+        }
+
+        &:hover {
+          .product-name {
+            text-decoration: underline;
+            color: #ff4e00;
+          }
+          .image {
+            opacity: 0.8;
+          }
+        }
+
+        .product-name {
+          $product-name-height: 28px;
+          height: $product-name-height;
+          line-height: $product-name-height;
+          margin: 19px 10px 0;
+          font-size: 14px;
+          color: #333;
+          transition: color .3s ease;
+        }
+
+        .product-price {
+          $product-name-height: 24px;
+          height: $product-name-height;
+          line-height: $product-name-height;
+          margin: 8px 20px;
+          font-size: 16px;
+          color: #ff4e00;
+
+          &::before {
+            content: "￥";
+            font-weight: bold;
+          }
+        }
+
+        .image {
+          width: 185px;
+          height: 155px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  .floor-right {
+    div {
+      height: 220px;
+      overflow: hidden;
     }
   }
 }

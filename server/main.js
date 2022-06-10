@@ -9,7 +9,6 @@ app.use("*", cors())
 app.use(express.static(path.join(__dirname, "/static")))
 
 app.post("/getBanner", async (req, res) => {
-    console.log(1)
     res.status(200)
     await getJson(path.join(__dirname, "./json/banner.json"))
         .then(data => {
@@ -21,7 +20,6 @@ app.post("/getBanner", async (req, res) => {
 })
 
 app.post("/getHot", async (req, res) => {
-    console.log(2)
     res.status(200)
     await getJson(path.join(__dirname, "./json/hot.json"))
         .then(data => {
@@ -30,6 +28,27 @@ app.post("/getHot", async (req, res) => {
         .catch(() => {
             res.send([])
         })
+})
+
+app.post("/getFloor", async (req, res) => {
+    res.status(200)
+    await new Promise((resolve, reject) => {
+        req.on("data", (data) => {
+            data = data.toString()
+            try {
+                data = JSON.parse(data).id
+                resolve(data)
+            } catch (e) {
+                reject()
+            }
+        })
+    }).then((id) => getJson(path.join(__dirname, "./json/floor.json"))
+        .then(data => data.filter(e => e.id === id)[0]
+        ))
+        .then(data => {
+            res.send(data)
+        })
+        .catch(() => res.send(null))
 })
 
 

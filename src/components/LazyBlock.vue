@@ -23,7 +23,6 @@ export default defineComponent({
   },
   setup(prop, { emit }) {
     const isLoad = ref(Object.prototype.toString.call(prop.load) === "[object Boolean]" ? prop.load : true);
-    console.log(isLoad.value)
     const isShow = ref(false);
     const lazyElement = ref(null);
 
@@ -33,7 +32,7 @@ export default defineComponent({
         window.scrollY >= top - window.innerHeight &&
           window.scrollY <= top + window.innerHeight &&
           (isShow.value = true) &&
-          window.removeEventListener("scroll", eventFunc);
+          (window.removeEventListener("scroll", eventFunc) || emit("show"));
       };
       window.addEventListener("scroll", eventFunc);
       eventFunc();
