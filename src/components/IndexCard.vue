@@ -1,3 +1,11 @@
+<!--
+ * @Author: Striver-TL 2806717229@qq.com
+ * @Date: 2022-06-11 11:15:05
+ * @LastEditors: Striver-TL 2806717229@qq.com
+ * @LastEditTime: 2022-06-13 10:30:35
+ * @FilePath: \one-shop\src\components\IndexCard.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div class="card">
     <div class="card-title float-clear">
@@ -5,28 +13,23 @@
       <a class="float-right">更多&gt;</a>
     </div>
     <div class="card-list">
-      <ul>
-        <li>
-          <a href="javascript:void(0)">
-            <b>【特惠】</b>
-            <span>掬一轮明月&nbsp;表无尽惦念</span>
-          </a>
-        </li>
-        <li>
-          <a href=""><b>【公告】</b> <span>好奇金装成长裤新品上市</span></a>
-        </li>
-        <li>
-          <a href=""><b>【特惠】</b> <span>大牌闪购·抢！</span></a>
-        </li>
-        <li>
-          <a href=""
-            ><b>【公告】</b> <span>发福利&nbsp;买车就抢千元油卡</span></a
-          >
-        </li>
-        <li>
-          <a href=""><b>【公告】</b> <span>家电低至五折</span></a>
-        </li>
-      </ul>
+      <LazyBlock :autoLoad="true" @success="getNews">
+        <template v-slot:default>
+          <ul>
+            <template v-if="news.length">
+              <li v-for="(item, index) in news" :key="index">
+                <a :href="item.href">
+                  <b>【{{ item.type }}】</b>
+                  <span>{{ item.text }}</span>
+                </a>
+              </li>
+            </template>
+            <template v-else>
+              <li class="card-empty" v-for="i in 5" :key="i"></li>
+            </template>
+          </ul>
+        </template>
+      </LazyBlock>
     </div>
     <div class="card-title"><h3>一号钱包</h3></div>
     <div class="card-link">
@@ -37,13 +40,34 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 import LazyImage from "@/components/LazyImage";
+import LazyBlock from "@/components/LazyBlock";
+import { sendRequest } from "@/util/sendRequest";
 
 export default defineComponent({
   name: "IndexCard",
-  setup() {},
+  setup() {
+    const news = reactive([]);
+    return {
+      news,
+      getNews() {
+        sendRequest({
+          url: "getNews",
+          method: "POST",
+          "Content-Type": "application/json",
+        })
+          .then((data) => {
+            news.push(...data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+    };
+  },
   components: {
+    LazyBlock,
     LazyImage,
   },
 });
@@ -90,6 +114,12 @@ $border-color: #d9d9d9;
         color: #f33;
       }
     }
+  }
+
+  li.card-empty {
+    height: 25px;
+    background: #f1f1f1;
+    margin: 5px 10px;
   }
 }
 

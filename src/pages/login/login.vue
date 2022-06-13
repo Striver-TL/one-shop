@@ -15,6 +15,8 @@
               name="username"
               class="float-right"
               placeholder="邮箱/手机/用户名"
+              autocomplete="off"
+              v-model="word"
             />
           </div>
           <div class="input psd-input float-clear">
@@ -23,6 +25,8 @@
               name="password"
               class="float-right"
               placeholder="密码"
+              autocomplete="new-password"
+              v-model="password"
             />
           </div>
           <div
@@ -31,7 +35,7 @@
           >
             <div class="float-left">
               <label style="cursor: pointer">
-                <input type="checkbox" name="autologin" />
+                <input type="checkbox" name="autologin" v-model="autoLogin" />
                 <span>自动登录</span>
               </label>
             </div>
@@ -39,8 +43,12 @@
               <a href="javascript:void(0)">忘记密码？</a>
             </div>
           </div>
-          <div>
-            <button class="login-btn">登录</button>
+          <div class="login-btn-block">
+            <button class="login-btn" @click="toLogin" :disabled="isLogin">
+              <span v-if="!isLogin">登录</span>
+              <span v-else class="loading"></span>
+            </button>
+            <span v-if="warn.isWarn">用户名或密码错误</span>
           </div>
           <div><span>更多合作网站账号登录</span></div>
           <div class="form-other float-clear">
@@ -68,11 +76,54 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, reactive, ref } from "vue";
+import { useStore } from "vuex";
+import { sendRequest } from "@/util/sendRequest";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "LoginPage",
-  setup() {},
+  setup() {
+    const word = ref("");
+    const password = ref("");
+    // 是否正在登录
+    const isLogin = ref(false);
+    // 是否自动登录
+    const autoLogin = ref(false);
+    const warn = reactive({
+      isWarn: false,
+      message: "",
+    });
+    //
+    const router = useRouter();
+    const store = useStore();
+    return {
+      word,
+      password,
+      isLogin,
+      autoLogin,
+      warn,
+      toLogin() {
+        isLogin.value = true;
+        sendRequest({
+          url: `toLogin?word=${word.value}&password=${password.value}&autoLogin=${Number(autoLogin.value)}`,
+          method: "POST",
+          "Content-Type": "application/json",
+        }).then((data) => {
+          setTimeout(() => {
+            if (data.err) {
+              warn.isWarn = true;
+              warn.message = data.message;
+            } else {
+              store.commit("setUserInfo", data.data);
+              router.push("/index");
+            }
+            isLogin.value = false;
+          }, 500);
+        });
+      },
+    };
+  },
 });
 </script>
 
@@ -97,6 +148,7 @@ export default defineComponent({
       $login-icon-width: 60px;
       input {
         width: $login-form-width - $login-icon-width !important;
+        text-indent: 1em;
       }
 
       &::before {
@@ -114,6 +166,20 @@ export default defineComponent({
       }
       &.psd-input::before {
         background-image: url("@/static/lock.png");
+      }
+    }
+    
+    .login-btn-block {
+      position: relative;
+      & > span {
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        width: 15em;
+        transform: translateY(-50%);
+        padding-left: 1em;
+        color: #f33;
+        letter-spacing: 1px;
       }
     }
 

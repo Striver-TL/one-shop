@@ -5,13 +5,27 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
+import { sendRequest } from "@/util/sendRequest";
+import { onMounted } from "vue";
+
 export default {
   name: "App",
-  beforeCreate() {
+  setup() {
+    const store = useStore();
     console.time();
-  },
-  mounted() {
-    console.timeEnd();
+    onMounted(() => {
+      sendRequest({
+        url: "toLogin?cookieLogin=1",
+        method: "POST",
+        "Content-Type": "application/json",
+      }).then((data) => {
+        if (!data.err) {
+          store.commit("setUserInfo", data.data);
+        }
+      });
+      console.timeEnd();
+    });
   },
 };
 </script>
@@ -87,7 +101,7 @@ input {
   &::before {
     content: "";
     position: absolute;
-    width: 40%;
+    width: 50%;
     height: 100%;
     background: linear-gradient(
       270deg,
@@ -107,5 +121,9 @@ input {
   100% {
     left: 100%;
   }
+}
+
+.username {
+  color: #f33;
 }
 </style>

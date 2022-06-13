@@ -10,7 +10,8 @@
         <div class="right float-right float-clear">
           <div class="right-text float-left">
             <span>您好，欢迎观临一号店！</span>
-            <RouterLink to="/login/login">请登录</RouterLink>
+            <RouterLink to="/login/login" v-if="!state.userinfo.phone">请登录</RouterLink>
+            <span class="username" v-else>{{ state.userinfo.phone }}</span>
           </div>
           <div class="right-select float-left">
             <div class="select-option">
@@ -30,10 +31,16 @@
 
 <script>
 import { defineComponent } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "LoginIndex",
-  setup() {},
+  setup() {
+    const { state } = useStore();
+    return {
+      state
+    }
+  },
 });
 </script>
 
@@ -96,6 +103,15 @@ export default defineComponent({
           outline: none;
         }
       }
+
+      .warning {
+        border-color: #f33;
+
+        input {
+          color: #f33;
+        }
+      }
+
       .input,
       .login-btn,
       .form-other {
@@ -120,8 +136,30 @@ export default defineComponent({
         &:hover {
           background: #e83737;
         }
-      }
 
+        &:disabled {
+          background: #777;
+          cursor: not-allowed;
+        }
+
+        .loading {
+          display: block;
+          width: 40px;
+          height: 40px;
+          background: url("@/static/loading.png") 0 no-repeat;
+          background-size: cover;
+          margin: 0 auto;
+          animation: rotate 1s linear infinite;
+        }
+      }
+      @keyframes rotate {
+        0% {
+          transform: rotateZ(0deg);
+        }
+        100% {
+          transform: rotateZ(360deg);
+        }
+      }
       .form-other {
         color: #b1b1b1;
         input {

@@ -128,7 +128,7 @@ $banner-height: 400px;
   position: relative;
 
   .unload {
-    background: #f4f4f4;
+    background: #f1f1f1;
 
     & > * {
       display: none;

@@ -1,8 +1,16 @@
+<!--
+ * @Author: Striver-TL 2806717229@qq.com
+ * @Date: 2022-06-11 11:15:05
+ * @LastEditors: Striver-TL 2806717229@qq.com
+ * @LastEditTime: 2022-06-13 11:04:01
+ * @FilePath: \one-shop\src\components\IndexAdvert.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div class="advertisement">
-    <LazyBlock @success="success">
-      <template v-slot:default="slotProps">
-        <LazyImage :src="src" @success="slotProps.toLoad()"></LazyImage>
+    <LazyBlock :autoLoad="true">
+      <template v-slot:default>
+        <LazyImage :src="src"></LazyImage>
       </template>
     </LazyBlock>
   </div>
@@ -19,13 +27,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-  },
-  setup() {
-    return {
-      success() {
-        console.log("ok")
-      },
-    };
   },
   components: {
     LazyBlock,

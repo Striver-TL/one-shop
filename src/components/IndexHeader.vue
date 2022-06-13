@@ -7,7 +7,7 @@
           <ul class="topbar-list float-clear">
             <li class="float-left">
               您好!
-              <span v-if="username">{{ username }}</span>
+              <span class="username" v-if="state.userinfo.phone">{{ state.userinfo.phone }}</span>
               <span v-else>
                 <RouterLink to="/login/login">请登录</RouterLink>
                 <RouterLink to="/login/register" style="color: orange"
@@ -89,15 +89,10 @@ import IndexSearchBar from "@/components/IndexSearchBar.vue";
 
 export default defineComponent({
   name: "IndexHeader",
-  data() {
-    return {
-      username: null,
-    };
-  },
-  beforeMount() {
+  setup() {
     const { state } = useStore();
-    if (state.userinfo) {
-      this.username = state.userinfo.uname;
+    return {
+      state
     }
   },
   components: {
@@ -216,4 +211,11 @@ export default defineComponent({
     margin-top: 5px;
   }
 }
+
+.username {
+  color: #f33;
+  padding: 0 .5em;
+  font-size: 12px;
+}
+
 </style>
