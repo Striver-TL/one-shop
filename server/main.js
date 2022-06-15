@@ -2,7 +2,7 @@
  * @Author: Striver-TL 2806717229@qq.com
  * @Date: 2022-06-11 11:15:05
  * @LastEditors: Striver-TL 2806717229@qq.com
- * @LastEditTime: 2022-06-13 10:20:08
+ * @LastEditTime: 2022-06-14 17:42:33
  * @FilePath: \one-shop\server\main.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -120,6 +120,23 @@ app.post("/toRegister", async (req, res) => {
             message: "注册失败！"
         })
     }
+})
+
+app.post("/getProduct", async (req, res) => {
+    await getJson(path.join(__dirname, "./json/products.json"))
+        .then(data => {
+            const result = data.filter(e => e.id === req.query.id)
+            if (result.length) {
+                res.status(200)
+                res.send(JSON.stringify(result[0])) 
+            } else {
+                res.statusCode = 404
+            }
+        })
+        .catch(() => {
+            res.status(404)
+        })
+    res.end()
 })
 
 app.post("/toLogin", async (req, res) => {

@@ -1,0 +1,1065 @@
+[
+    {
+        "id": "15288",
+        "name": "冰韵 天然白色正圆S925银扣珍珠项链",
+        "desc": "全国包邮 送妈妈，正圆级淡水珍珠，白色S925银链扣，使用方便，尊贵礼物。",
+        "brand": "珠韵首饰",
+        "banners": [
+            "ps1.jpg",
+            "ps2.jpg",
+            "ps3.jpg",
+            "ps4.jpg"
+        ],
+        "smalls": [
+            "ps1.jpg",
+            "ps2.jpg",
+            "ps3.jpg",
+            "ps4.jpg"
+        ],
+        "specs": [
+            {
+                "title": "尺码",
+                "items": [
+                    {
+                        "text": "43cm",
+                        "price": 1786,
+                        "oldPrice": 3886
+                    },
+                    {
+                        "text": "45cm",
+                        "price": 2149,
+                        "oldPrice": 4388
+                    },
+                    {
+                        "text": "50cm",
+                        "price": 2459,
+                        "oldPrice": 4888
+                    }
+                ]
+            },
+            {
+                "title": "颜色选择",
+                "items": [
+                    {
+                        "text": "粉色",
+                        "price": [
+                            -119,
+                            -214,
+                            -312
+                        ],
+                        "oldPrice": [
+                            -386,
+                            -586,
+                            -786
+                        ]
+                    },
+                    {
+                        "text": "白色"
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "天然淡水珍珠"
+            },
+            {
+                "key": "商品编号",
+                "value": "1546211"
+            },
+            {
+                "key": "品牌",
+                "value": "珠韵首饰"
+            },
+            {
+                "key": "上架时间",
+                "value": "2015-09-06 09:19:09"
+            },
+            {
+                "key": "商品毛重",
+                "value": "160.00g"
+            },
+            {
+                "key": "商品产地",
+                "value": "法国"
+            },
+            {
+                "key": "珍珠形状",
+                "value": "正圆"
+            },
+            {
+                "key": "镶嵌材质",
+                "value": "纯银"
+            },
+            {
+                "key": "款式",
+                "value": "项链"
+            }
+        ],
+        "details": [
+            "de2.jpg",
+            "de3.jpg",
+            "de4.jpg",
+            "de5.jpg",
+            "de6.jpg",
+            "de7.jpg",
+            "de8.jpg"
+        ]
+    },
+    {
+        "id": "100",
+        "name": "德亚 德国进口牛奶",
+        "desc": "全脂纯牛奶 早餐奶高钙",
+        "brand": "德亚（Weidendorf）",
+        "banners": [
+            "milk.jpg.avif",
+            "milk2.jpg.avif",
+            "milk3.jpg.avif",
+            "milk4.jpg.avif",
+            "milk5.jpg.avif"
+        ],
+        "smalls": [
+            "milk_small1.jpg.avif",
+            "milk_small2.jpg.avif",
+            "milk_small3.jpg.avif",
+            "milk_small4.jpg.avif",
+            "milk_small5.jpg.avif"
+        ],
+        "specs": [
+            {
+                "title": "类别",
+                "items": [
+                    {
+                        "text": "全脂",
+                        "price": 0,
+                        "oldPrice": 0
+                    },
+                    {
+                        "text": "脱脂",
+                        "price": 0,
+                        "oldPrice": 0
+                    },
+                    {
+                        "text": "低脂",
+                        "price": 0,
+                        "oldPrice": 0
+                    }
+                ]
+            },
+            {
+                "title": "数量",
+                "items": [
+                    {
+                        "text": "30盒",
+                        "price": [
+                            74.9,
+                            79.9,
+                            76.9
+                        ],
+                        "oldPrice": [
+                            89.9,
+                            97.9,
+                            85.9
+                        ]
+                    },
+                    {
+                        "text": "24盒",
+                        "price": [
+                            59.9,
+                            67.9,
+                            63.9
+                        ],
+                        "oldPrice": [
+                            69.9,
+                            83.9,
+                            75.9
+                        ]
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "德亚全脂牛奶200ml"
+            },
+            {
+                "key": "商品编号",
+                "value": "100"
+            },
+            {
+                "key": "商品毛重",
+                "value": "5.3kg"
+            },
+            {
+                "key": "商品产地",
+                "value": "德国"
+            },
+            {
+                "key": "适用人群",
+                "value": "青少年"
+            },
+            {
+                "key": "是否有机",
+                "value": "非有机"
+            },
+            {
+                "key": "包装形式",
+                "value": "箱装"
+            },
+            {
+                "key": "净含量",
+                "value": ">100mL"
+            }
+        ],
+        "details": [
+            "milk_de1.jpg",
+            "milk_de2.jpg",
+            "milk_de3.jpg",
+            "milk_de4.jpg",
+            "milk_de5.jpg",
+            "milk_de6.jpg"
+        ]
+    },
+    {
+        "id": "101",
+        "name": "苹果6s Apple iPhone 6s",
+        "desc": "苹果6s 二手苹果 国行全网通 9成新",
+        "brand": "Apple",
+        "banners": [
+            "apple1.png.avif",
+            "apple2.png.avif",
+            "apple3.jpg.avif",
+            "apple4.jpg.avif",
+            "apple5.jpg.avif"
+        ],
+        "smalls": [
+            "apple_small1.png.avif",
+            "apple_small2.png.avif",
+            "apple_small3.png.avif",
+            "apple_small4.png.avif",
+            "apple_small5.avif"
+        ],
+        "specs": [
+            {
+                "title": "颜色",
+                "items": [
+                    {
+                        "text": "玫瑰金色",
+                        "price": 0,
+                        "oldPrice": 0
+                    },
+                    {
+                        "text": "银色",
+                        "price": 0,
+                        "oldPrice": 0
+                    },
+                    {
+                        "text": "金色",
+                        "price": 0,
+                        "oldPrice": 0
+                    },
+                    {
+                        "text": "深空灰色",
+                        "price": 0,
+                        "oldPrice": 0
+                    }
+                ]
+            },
+            {
+                "title": "版本",
+                "items": [
+                    {
+                        "text": "16G",
+                        "price": 515,
+                        "oldPrice": 699
+                    },
+                    {
+                        "text": "64G",
+                        "price": 625,
+                        "oldPrice": 799
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "Apple iPhone 6s"
+            },
+            {
+                "key": "商品编号",
+                "value": "101"
+            },
+            {
+                "key": "商品毛重",
+                "value": "143.00g"
+            },
+            {
+                "key": "商品产地",
+                "value": "中国大陆"
+            },
+            {
+                "key": "货号",
+                "value": "iPhone 6s"
+            }
+        ],
+        "details": [
+            "apple_de1.jpg",
+            "apple_de2.jpg",
+            "apple_de3.jpg",
+            "apple_de4.jpg",
+            "apple_de5.jpg",
+            "apple_de6.jpg",
+            "apple_de7.jpg",
+            "apple_de8.jpg"
+        ]
+    },
+    {
+        "id": "102",
+        "name": "倩碧特惠组合套装",
+        "desc": "倩碧补水组合套装8折促销",
+        "brand": "倩碧",
+        "banners": [
+            "qianbi1.jpg.avif",
+            "qianbi2.jpg.avif",
+            "qianbi3.jpg.avif",
+            "qianbi4.jpg.avif",
+            "qianbi5.jpg.avif"
+        ],
+        "smalls": [
+            "qianbi1.jpg.avif",
+            "qianbi2.jpg.avif",
+            "qianbi3.jpg.avif",
+            "qianbi4.jpg.avif",
+            "qianbi5.jpg.avif"
+        ],
+        "specs": [
+            {
+                "title": "产品",
+                "items": [
+                    {
+                        "text": "干皮",
+                        "price": 368,
+                        "oldPrice": 450
+                    },
+                    {
+                        "text": "油皮",
+                        "price": 368,
+                        "oldPrice": 450
+                    },
+                    {
+                        "text": "混皮",
+                        "price": 368,
+                        "oldPrice": 450
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "倩碧特惠组合套装"
+            },
+            {
+                "key": "商品编号",
+                "value": "102"
+            },
+            {
+                "key": "商品毛重",
+                "value": "185.00g"
+            },
+            {
+                "key": "商品产地",
+                "value": "欧美及其它"
+            },
+            {
+                "key": "功效",
+                "value": "补水，保湿，控油平衡"
+            },
+            {
+                "key": "类别",
+                "value": "乳液"
+            }
+        ],
+        "details": [
+            "qianbi_de1.jpg",
+            "qianbi_de2.jpg",
+            "qianbi_de3.jpg",
+            "qianbi_de4.jpg",
+            "qianbi_de5.jpg"
+        ]
+    },
+    {
+        "id": "103",
+        "name": "品利特级橄榄油",
+        "desc": "750ml*4瓶装组合 西班牙原装进口",
+        "brand": "品利",
+        "banners": [
+            "pinli1.jpg.avif",
+            "pinli2.jpg.avif",
+            "pinli3.jpg.avif",
+            "pinli4.jpg.avif"
+        ],
+        "smalls": [
+            "pinli_small1.jpg.avif",
+            "pinli_small2.jpg.avif",
+            "pinli_small3.jpg.avif",
+            "pinli_small4.jpg.avif"
+        ],
+        "specs": [
+            {
+                "title": "容量",
+                "items": [
+                    {
+                        "text": "750ml",
+                        "price": 280,
+                        "oldPrice": 320
+                    }
+                ]
+            },
+            {
+                "title": "数量",
+                "items": [
+                    {
+                        "text": "2",
+                        "price": 0,
+                        "oldPrice": 0
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "品利特级橄榄油"
+            },
+            {
+                "key": "商品编号",
+                "value": "103"
+            },
+            {
+                "key": "店铺",
+                "value": "品利食品旗舰店"
+            },
+            {
+                "key": "商品毛重",
+                "value": "1.5kg"
+            },
+            {
+                "key": "商品产地",
+                "value": "西班牙"
+            },
+            {
+                "key": "加工工艺",
+                "value": "压榨"
+            },
+            {
+                "key": "包装形式",
+                "value": "瓶装"
+            }
+        ],
+        "details": [
+            "pinli_de1.jpg",
+            "pinli_de2.jpg",
+            "pinli_de3.jpg",
+            "pinli_de4.jpg",
+            "pinli_de5.jpg",
+            "pinli_de6.jpg",
+            "pinli_de7.jpg",
+            "pinli_de8.jpg",
+            "pinli_de9.jpg"
+        ]
+    },
+    {
+        "id": "130",
+        "name": "贝思客 草莓先生&蓝莓小姐",
+        "desc": "爆浆脏脏包抹茶草莓饼干蛋糕冰山熔岩网红休闲零食小吃",
+        "brand": "贝思客",
+        "banners": [
+            "caomei1.jpg.avif",
+            "caomei2.jpg.avif",
+            "caomei3.jpg.avif",
+            "caomei4.jpg.avif",
+            "caomei5.jpg.avif",
+            "caomei6.jpg.avif"
+        ],
+        "smalls": [
+            "caomei_small5.jpg.avif",
+            "caomei_small6.jpg.avif",
+            "caomei_small1.jpg.avif",
+            "caomei_small2.jpg.avif",
+            "caomei_small3.jpg.avif",
+            "caomei_small4.jpg.avif"
+        ],
+        "specs": [
+            {
+                "title": "口味",
+                "items": [
+                    {
+                        "text": "巧克力",
+                        "price": 26.9,
+                        "oldPrice": 33.9
+                    },
+                    {
+                        "text": "草莓味",
+                        "price": 26.9,
+                        "oldPrice": 33.9
+                    },
+                    {
+                        "text": "抹茶味",
+                        "price": 26.9,
+                        "oldPrice": 33.9
+                    }
+                ]
+            },
+            {
+                "title": "规格",
+                "items": [
+                    {
+                        "text": "35g*6",
+                        "price": 0,
+                        "oldPrice": 0
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "贝思客 草莓先生&蓝莓小姐"
+            },
+            {
+                "key": "商品编号",
+                "value": "130"
+            },
+            {
+                "key": "店铺",
+                "value": "珠江食品旗舰店"
+            },
+            {
+                "key": "商品毛重",
+                "value": "210.00g"
+            },
+            {
+                "key": "商品产地",
+                "value": "中国大陆"
+            },
+            {
+                "key": "包装形式",
+                "value": "盒装"
+            },
+            {
+                "key": "类别",
+                "value": "夹心蛋糕"
+            }
+        ],
+        "details": [
+            "caomei_de1.jpg",
+            "caomei_de2.jpg",
+            "caomei_de3.jpg",
+            "caomei_de4.jpg",
+            "caomei_de5.jpg",
+            "caomei_de6.jpg",
+            "caomei_de7.jpg",
+            "caomei_de8.jpg"
+        ]
+    },
+    {
+        "id": "131",
+        "name": "微笑果园SMILE 智利进口绿奇异果",
+        "desc": "金国进口绿心黄心猕猴桃新鲜水果单果90-110g绿心6颗装",
+        "brand": "利智",
+        "banners": [
+            "qiyi1.jpg.avif",
+            "qiyi2.jpg.avif",
+            "qiyi3.jpg.avif",
+            "qiyi4.jpg.avif",
+            "qiyi5.jpg.avif"
+        ],
+        "smalls": [
+            "qiyi_small1.jpg.avif",
+            "qiyi_small2.jpg.avif",
+            "qiyi_small3.jpg.avif",
+            "qiyi_small4.jpg.avif",
+            "qiyi_small5.jpg.avif"
+        ],
+        "specs": [
+            {
+                "title": "种类",
+                "items": [
+                    {
+                        "text": "绿心6颗装",
+                        "price": 29,
+                        "oldPrice": 29
+                    },
+                    {
+                        "text": "绿心8颗装",
+                        "price": 33,
+                        "oldPrice": 33
+                    },
+                    {
+                        "text": "绿心10颗装",
+                        "price": 36,
+                        "oldPrice": 36
+                    },
+                    {
+                        "text": "金果6颗装",
+                        "price": 35,
+                        "oldPrice": 35
+                    },
+                    {
+                        "text": "金果10颗装",
+                        "price": 53,
+                        "oldPrice": 53
+                    }
+                ]
+            },
+            {
+                "title": "规格",
+                "items": [
+                    {
+                        "text": "90-110g",
+                        "price": 0,
+                        "oldPrice": 0
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "智利进口绿奇异果"
+            },
+            {
+                "key": "商品编号",
+                "value": "131"
+            },
+            {
+                "key": "店铺",
+                "value": "智利官方旗舰店"
+            },
+            {
+                "key": "商品毛重",
+                "value": "420.00g"
+            },
+            {
+                "key": "商品产地",
+                "value": "智利"
+            },
+            {
+                "key": "品种",
+                "value": "海沃德"
+            },
+            {
+                "key": "种类",
+                "value": "绿心果"
+            },
+            {
+                "key": "包装形式",
+                "value": "简装"
+            },
+            {
+                "key": "原产地",
+                "value": "智利"
+            },
+            {
+                "key": "国产/进口",
+                "value": "进口"
+            }
+        ],
+        "details": [
+            "qiyi_de1.jpg",
+            "qiyi_de2.jpg",
+            "qiyi_de3.jpg",
+            "qiyi_de4.jpg",
+            "qiyi_de5.jpg",
+            "qiyi_de6.jpg",
+            "qiyi_de7.jpg",
+            "qiyi_de8.jpg",
+            "qiyi_de9.jpg",
+            "qiyi_de10.jpg"
+        ]
+    },
+    {
+        "id": "132",
+        "name": "正宗内蒙古五香酱牛肉",
+        "desc": "健身卤味黄牛腱子肉真空包装 2斤装【真牛肉250g*4袋】推荐",
+        "brand": "美佳",
+        "banners": [
+            "niurou1.jpg.avif",
+            "niurou2.jpg.avif",
+            "niurou3.jpg.avif",
+            "niurou4.jpg.avif",
+            "niurou5.jpg.avif",
+            "niurou6.jpg.avif",
+            "niurou7.jpg.avif",
+            "niurou8.jpg.avif",
+            "niurou9.jpg.avif"
+        ],
+        "smalls": [
+            "niurou_small1.jpg.avif",
+            "niurou_small2.jpg.avif",
+            "niurou_small3.jpg.avif",
+            "niurou_small4.jpg.avif",
+            "niurou_small5.jpg.avif",
+            "niurou_small6.jpg.avif",
+            "niurou_small7.jpg.avif",
+            "niurou_small8.jpg.avif",
+            "niurou_small9.jpg.avif"
+        ],
+        "specs": [
+            {
+                "title": "种类",
+                "items": [
+                    {
+                        "text": "精品黄牛腱子肉",
+                        "price": 0,
+                        "oldPrice": 0
+                    },
+                    {
+                        "text": "黄牛腱子肉",
+                        "price": 0,
+                        "oldPrice": 0
+                    },
+                    {
+                        "text": "黄牛肉",
+                        "price": 0,
+                        "oldPrice": 0
+                    }
+                ]
+            },
+            {
+                "title": "规格",
+                "items": [
+                    {
+                        "text": "1斤",
+                        "price": [
+                            40,
+                            35,
+                            30
+                        ],
+                        "oldPrice": [
+                            50,
+                            40,
+                            35
+                        ]
+                    },
+                    {
+                        "text": "2斤",
+                        "price": [
+                            75,
+                            65,
+                            55
+                        ],
+                        "oldPrice": [
+                            80,
+                            70,
+                            60
+                        ]
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "正宗内蒙古五香酱牛肉"
+            },
+            {
+                "key": "商品编号",
+                "value": "132"
+            },
+            {
+                "key": "店铺",
+                "value": "智周万物进口食品专营店"
+            },
+            {
+                "key": "商品毛重",
+                "value": "500.00g-1500.00g"
+            },
+            {
+                "key": "商品产地",
+                "value": "其他"
+            },
+            {
+                "key": "净含量",
+                "value": "<1500g"
+            },
+            {
+                "key": "口味",
+                "value": "其他"
+            },
+            {
+                "key": "包装形式",
+                "value": "灌装"
+            },
+            {
+                "key": "加工工艺",
+                "value": "油炸"
+            }
+        ],
+        "details": [
+            "niurou_de1.jpg",
+            "niurou_de2.jpg",
+            "niurou_de3.jpg",
+            "niurou_de4.jpg",
+            "niurou_de5.jpg"
+        ]
+    },
+    {
+        "id": "133",
+        "name": "法国 拉菲(LAFITE)传奇波尔多",
+        "desc": "赤霞珠干红葡萄酒 750ml 整箱装",
+        "brand": "拉菲(LAFITE)",
+        "banners": [
+            "hongjiu1.jpg.avif",
+            "hongjiu2.jpg.avif",
+            "hongjiu3.jpg.avif",
+            "hongjiu4.jpg.avif",
+            "hongjiu5.jpg.avif",
+            "hongjiu6.jpg.avif",
+            "hongjiu7.jpg.avif"
+        ],
+        "smalls": [
+            "hongjiu_small1.jpg.avif",
+            "hongjiu_small2.jpg.avif",
+            "hongjiu_small3.jpg.avif",
+            "hongjiu_small4.jpg.avif",
+            "hongjiu_small5.jpg.avif",
+            "hongjiu_small6.jpg.avif",
+            "hongjiu_small7.jpg.avif"
+        ],
+        "specs": [
+            {
+                "title": "种类",
+                "items": [
+                    {
+                        "text": "传奇波尔多",
+                        "price": 615,
+                        "oldPrice": 628
+                    },
+                    {
+                        "text": "珍藏波尔多",
+                        "price": 720,
+                        "oldPrice": 750
+                    }
+                ]
+            },
+            {
+                "title": "规格",
+                "items": [
+                    {
+                        "text": "1瓶",
+                        "price": [
+                            0,
+                            0
+                        ],
+                        "oldPrice": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "text": "整箱（6瓶）",
+                        "price": [
+                            2800,
+                            3300
+                        ],
+                        "oldPrice": [
+                            3400,
+                            3700
+                        ]
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "拉菲葡萄酒"
+            },
+            {
+                "key": "商品编号",
+                "value": "133"
+            },
+            {
+                "key": "商品毛重",
+                "value": "7.65kg"
+            },
+            {
+                "key": "商品产地",
+                "value": "法国"
+            },
+            {
+                "key": "容量",
+                "value": "750mL"
+            },
+            {
+                "key": "颜色",
+                "value": "石榴红"
+            },
+            {
+                "key": "酸度",
+                "value": "中酸"
+            },
+            {
+                "key": "葡萄品种",
+                "value": "赤霞珠"
+            },
+            {
+                "key": "香型",
+                "value": "果香型"
+            },
+            {
+                "key": "新/旧世界",
+                "value": "旧世界"
+            }, {
+                "key": "瓶塞",
+                "value": "橡木塞"
+            }, {
+                "key": "国产/进口",
+                "value": "进口"
+            }
+        ],
+        "details": [
+            "hongjiu_de1.jpg",
+            "hongjiu_de2.jpg",
+            "hongjiu_de3.jpg",
+            "hongjiu_de4.jpg",
+            "hongjiu_de5.jpg",
+            "hongjiu_de6.jpg",
+            "hongjiu_de7.jpg"
+        ]
+    },
+    {
+        "id": "134",
+        "name": "新西兰进口牛奶纽仕兰",
+        "desc": "3.5g蛋白质牧场草饲高钙礼盒全脂纯牛奶乳品 250ml*24 整箱装",
+        "brand": "纽仕兰",
+        "banners": [
+            "theland1.jpg.avif",
+            "theland2.jpg.avif",
+            "theland3.jpg.avif",
+            "theland4.jpg.avif",
+            "theland5.jpg.avif",
+            "theland6.jpg.avif"
+        ],
+        "smalls": [
+            "theland_small1.jpg.avif",
+            "theland_small2.jpg.avif",
+            "theland_small3.jpg.avif",
+            "theland_small4.jpg.avif",
+            "theland_small5.jpg.avif",
+            "theland_small6.jpg.avif"
+        ],
+        "specs": [
+            {
+                "title": "类别",
+                "items": [
+                    {
+                        "text": "【经典爆款】全脂3.5g蛋白质",
+                        "price": 0,
+                        "oldPrice": 0
+                    },
+                    {
+                        "text": "【低脂高钙】低脂4.0g蛋白质",
+                        "price": 0,
+                        "oldPrice": 0
+                    },
+                    {
+                        "text": "【部分脱脂】脱脂",
+                        "price":  0,
+                        "oldPrice": 0
+                    }
+                ]
+            },
+            {
+                "title": "规格",
+                "items": [
+                    {
+                        "text": "24盒",
+                        "price": [
+                            79.9,
+                            74.9,
+                            71.9
+                        ],
+                        "oldPrice": [
+                            89.9,
+                            79.9,
+                            75.9
+                        ]
+                    },
+                    {
+                        "text": "48盒",
+                        "price": [
+                            149.9,
+                            129.9,
+                            109.9
+                        ],
+                        "oldPrice": [
+                            169.9,
+                            149.9,
+                            129.9
+                        ]
+                    }
+                ]
+            }
+        ],
+        "attribute": [
+            {
+                "key": "商品名称",
+                "value": "纽仕兰进口牛奶"
+            },
+            {
+                "key": "商品编号",
+                "value": "134"
+            },
+            {
+                "key": "商品毛重",
+                "value": "6.64kg"
+            },
+            {
+                "key": "商品产地",
+                "value": "新西兰"
+            },
+            {
+                "key": "适用人群",
+                "value": "成人"
+            },
+            {
+                "key": "脂肪含量",
+                "value": "全脂"
+            },
+            {
+                "key": "净含量",
+                "value": ">1000mL"
+            },
+            {
+                "key": "是否有机",
+                "value": "非有机"
+            },
+            {
+                "key": "包装形式",
+                "value": "箱装"
+            },
+            {
+                "key": "钙含量",
+                "value": "高钙"
+            }
+        ],
+        "details": [
+            "theland_de1.jpg",
+            "theland_de2.jpg",
+            "theland_de3.jpg",
+            "theland_de4.jpg",
+            "theland_de5.jpg",
+            "theland_de6.jpg",
+            "theland_de7.jpg",
+            "theland_de8.jpg",
+            "theland_de9.jpg",
+            "theland_de10.jpg"
+        ]
+    }
+]

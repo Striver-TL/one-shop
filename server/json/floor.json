@@ -42,21 +42,21 @@
       },
       {
         "id": "132",
-        "src": "fre_3.jpg",
-        "name": "新鲜美味 进口美食",
-        "price": 98
+        "src": "niurou1.jpg.avif",
+        "name": "正宗内蒙古五香酱牛肉",
+        "price": 80
       },
       {
         "id": "133",
-        "src": "fre_4.jpg",
-        "name": "新鲜美味 进口美食",
-        "price": 24
+        "src": "hongjiu1.jpg.avif",
+        "name": "拉菲(LAFITE)传奇波尔多",
+        "price": 615
       },
       {
         "id": "134",
-        "src": "fre_5.jpg",
-        "name": "新鲜美味 纯牛奶",
-        "price": 142
+        "src": "theland1.jpg.avif",
+        "name": "纽仕兰进口牛奶",
+        "price": 79.9
       },
       {
         "id": "135",

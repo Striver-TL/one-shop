@@ -1,6 +1,10 @@
 <template>
   <div class="hot">
-    <LazyBlock :load="products.length > loadCount" @show="getData" class="float-clear">
+    <LazyBlock
+      :load="products.length > loadCount"
+      @show="getData"
+      class="float-clear"
+    >
       <template v-slot:default="slotProps">
         <div class="left-product float-left" v-if="leftProduct">
           <router-link
@@ -22,33 +26,44 @@
           </router-link>
         </div>
         <div class="hot-list float-right">
-          <ul v-if="products.length">
-            <li v-for="(item, index) in products" :key="index">
-              <router-link
-                :to="{
-                  path: '/index/product',
-                  query: {
-                    id: item.id,
-                  },
+          <SlideShow :length="products.length" :showLength="4">
+            <template v-slot:slideshow-content="slideProps">
+              <ul
+                v-if="products.length"
+                :style="{
+                  transform: `translateX(-${slideProps.left * 100}%)`,
                 }"
               >
-                <LazyImage
-                  :src="item.src"
-                  @success="loadImage(slotProps.toLoad)"
-                ></LazyImage>
-                <span class="hot-name">{{ item.name }}</span>
-                <span class="hot-desc">{{ item.desc }}</span>
-                <span>
-                  <span class="hot-price">{{ item.price }}</span>
-                  <span class="hot-label">{{ item.label }}</span>
-                </span>
-              </router-link>
-            </li>
-          </ul>
-          <div class="hot-sidebtn">
-            <span class="hot-leftbtn"></span>
-            <span class="hot-rightbtn"></span>
-          </div>
+                <li v-for="(item, index) in products" :key="index">
+                  <router-link
+                    :to="{
+                      path: '/index/product',
+                      query: {
+                        id: item.id,
+                      },
+                    }"
+                  >
+                    <LazyImage
+                      :src="item.src"
+                      @success="loadImage(slotProps.toLoad)"
+                    ></LazyImage>
+                    <span class="hot-name">{{ item.name }}</span>
+                    <span class="hot-desc">{{ item.desc }}</span>
+                    <span>
+                      <span class="hot-price">{{ item.price }}</span>
+                      <span class="hot-label">{{ item.label }}</span>
+                    </span>
+                  </router-link>
+                </li>
+              </ul>
+            </template>
+            <template v-slot:slideshow-sidebtn="slotProps">
+              <div class="hot-sidebtn">
+                <span class="hot-leftbtn" @click="slotProps.sub()"></span>
+                <span class="hot-rightbtn" @click="slotProps.add()"></span>
+              </div>
+            </template>
+          </SlideShow>
         </div>
       </template>
     </LazyBlock>
@@ -60,6 +75,7 @@ import { defineComponent, reactive, ref } from "vue";
 import { sendRequest } from "@/util/sendRequest";
 import LazyBlock from "@/components/LazyBlock";
 import LazyImage from "@/components/LazyImage";
+import SlideShow from "@/components/SlideShow";
 
 export default defineComponent({
   name: "IndexHot",
@@ -97,6 +113,7 @@ export default defineComponent({
   components: {
     LazyImage,
     LazyBlock,
+    SlideShow,
   },
 });
 </script>
@@ -203,17 +220,19 @@ $hot-border-color: #eaeaea;
 
   .hot-list {
     position: relative;
-    width: 977px;
+    width: 979px;
+    overflow: hidden;
 
     ul {
       display: flex;
       flex-flow: row nowrap;
       justify-content: left;
+      transition: transform .5s ease;
     }
 
     li {
       flex: 0 0 245.5px;
-      margin-left: -1px;
+      margin-right: -1px;
 
       & > a,
       & > * > span {

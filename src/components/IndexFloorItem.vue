@@ -1,116 +1,121 @@
 <template>
-  <LazyBlock @show="$emit('show')" :autoLoad="true">
-    <template v-slot:default>
-      <div class="floor-content" v-if="floorData">
-        <div class="floor-top float-clear">
-          <div class="floor-title float-left float-children">
-            <span class="floor-title-back">{{ floorData.id }}F</span>
-            <h2>{{ floorData.title }}</h2>
-          </div>
-          <div class="floor-link float-right">
-            <ul class="float-children">
-              <li v-for="(text, index) in floorData.toplink" :key="index">
-                <RouterLink
-                  :to="{
-                    path: '/index/product',
-                    query: {
-                      id: '999',
-                    },
-                  }"
-                  >{{ text }}</RouterLink
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="float-children">
-          <div class="floor-left">
-            <div class="floor-banner">
-              <div class="banner-content">
-                <ul>
-                  <transition
-                    name="floor"
-                    v-for="(banner, index) in floorData.banners"
-                    :key="index"
+  <div class="floor-item">
+    <LazyBlock @show="$emit('show')" :autoLoad="true">
+      <template v-slot:default>
+        <div class="floor-content" v-if="floorData">
+          <div class="floor-top float-clear">
+            <div class="floor-title float-left float-children">
+              <span class="floor-title-back">{{ floorData.id }}F</span>
+              <h2>{{ floorData.title }}</h2>
+            </div>
+            <div class="floor-link float-right">
+              <ul class="float-children">
+                <li v-for="(text, index) in floorData.toplink" :key="index">
+                  <RouterLink
+                    :to="{
+                      path: '/index/product',
+                      query: {
+                        id: '999',
+                      },
+                    }"
+                    >{{ text }}</RouterLink
                   >
-                    <li>
-                      <RouterLink
-                        :to="{
-                          path: '/index/product',
-                          query: {
-                            id: banner.id,
-                          },
-                        }"
-                      >
-                        <LazyImage
-                          :src="require(`@/static/${banner.src}`)"
-                        ></LazyImage>
-                      </RouterLink>
-                    </li>
-                  </transition>
-                </ul>
-              </div>
-              <div class="banner-sidebtn" v-if="floorData.banners.length > 1">
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-            <div class="floor-linktool">
-              <div class="linktool-link">
-                <ul class="float-children">
-                  <li v-for="(text, index) in floorData.toollink" :key="index">
-                    <RouterLink to="/index/index">{{ text }}</RouterLink>
-                  </li>
-                </ul>
-              </div>
-              <div class="linktool-line">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="floor-center">
-            <ul class="float-children">
-              <li v-for="product in floorData.products" :key="product.id">
+          <div class="float-children">
+            <div class="floor-left">
+              <div class="floor-banner">
+                <div class="banner-content">
+                  <ul>
+                    <transition
+                      name="floor"
+                      v-for="(banner, index) in floorData.banners"
+                      :key="index"
+                    >
+                      <li>
+                        <RouterLink
+                          :to="{
+                            path: '/index/product',
+                            query: {
+                              id: banner.id,
+                            },
+                          }"
+                        >
+                          <LazyImage
+                            :src="require(`@/static/${banner.src}`)"
+                          ></LazyImage>
+                        </RouterLink>
+                      </li>
+                    </transition>
+                  </ul>
+                </div>
+                <div class="banner-sidebtn" v-if="floorData.banners.length > 1">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div class="floor-linktool">
+                <div class="linktool-link">
+                  <ul class="float-children">
+                    <li
+                      v-for="(text, index) in floorData.toollink"
+                      :key="index"
+                    >
+                      <RouterLink to="/index/index">{{ text }}</RouterLink>
+                    </li>
+                  </ul>
+                </div>
+                <div class="linktool-line">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <div class="floor-center">
+              <ul class="float-children">
+                <li v-for="product in floorData.products" :key="product.id">
+                  <RouterLink
+                    :to="{
+                      path: '/index/product',
+                      query: {
+                        id: product.id,
+                      },
+                    }"
+                  >
+                    <span class="product-name">{{ product.name }}</span>
+                    <span class="product-price">{{
+                      product.price.toFixed(2)
+                    }}</span>
+                    <LazyImage
+                      :src="require(`@/static/${product.src}`)"
+                    ></LazyImage>
+                  </RouterLink>
+                </li>
+              </ul>
+            </div>
+            <div class="floor-right">
+              <div v-for="item in floorData.rightlink" :key="item.id">
                 <RouterLink
                   :to="{
                     path: '/index/product',
                     query: {
-                      id: product.id,
+                      id: item.id,
                     },
                   }"
                 >
-                  <span class="product-name">{{ product.name }}</span>
-                  <span class="product-price">{{
-                    product.price.toFixed(2)
-                  }}</span>
-                  <LazyImage
-                    :src="require(`@/static/${product.src}`)"
-                  ></LazyImage>
+                  <LazyImage :src="require(`@/static/${item.src}`)"></LazyImage>
                 </RouterLink>
-              </li>
-            </ul>
-          </div>
-          <div class="floor-right">
-            <div v-for="item in floorData.rightlink" :key="item.id">
-              <RouterLink
-                :to="{
-                  path: '/index/product',
-                  query: {
-                    id: item.id,
-                  },
-                }"
-              >
-                <LazyImage :src="require(`@/static/${item.src}`)"></LazyImage>
-              </RouterLink>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </template>
-  </LazyBlock>
+      </template>
+    </LazyBlock>
+  </div>
 </template>
 
 <script>
@@ -168,6 +173,9 @@ $unload-color: #f1f1f1;
 }
 
 $top-height: 50px;
+.floor-item {
+  height: 490px;
+}
 .floor-content {
   margin-top: 10px;
 }
@@ -283,10 +291,6 @@ $top-height: 50px;
       }
     }
   }
-}
-
-.lazy-block:not(:first-of-type) .floor-content .floor-linktool {
-  background: #feecea;
 }
 
 .floor-center {

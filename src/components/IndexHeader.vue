@@ -111,7 +111,7 @@ export default defineComponent({
     rgba(100, 100, 100, 0.2) 0%,
     transparent 20px,
     transparent 100%
-  );
+  ) #f4f4f4;
 
   .topbar-list {
     & > li {

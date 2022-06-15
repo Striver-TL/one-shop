@@ -10,7 +10,9 @@
         <div class="right float-right float-clear">
           <div class="right-text float-left">
             <span>您好，欢迎观临一号店！</span>
-            <RouterLink to="/login/login" v-if="!state.userinfo.phone">请登录</RouterLink>
+            <RouterLink to="/login/login" v-if="!state.userinfo.phone"
+              >请登录</RouterLink
+            >
             <span class="username" v-else>{{ state.userinfo.phone }}</span>
           </div>
           <div class="right-select float-left">
@@ -23,7 +25,9 @@
       </div>
     </div>
     <div class="content">
-      <RouterView name="default"></RouterView>
+      <keep-alive>
+        <RouterView name="default"></RouterView>
+      </keep-alive>
     </div>
     <div class="footer"></div>
   </div>
@@ -38,8 +42,8 @@ export default defineComponent({
   setup() {
     const { state } = useStore();
     return {
-      state
-    }
+      state,
+    };
   },
 });
 </script>

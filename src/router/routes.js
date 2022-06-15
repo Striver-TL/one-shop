@@ -3,7 +3,7 @@
  * @GitHubAdress: https://github.com/Striver-TL
  * @Date: 2022-05-30 12:49:17
  * @LastEditors: Striver-TL 2806717229@qq.com
- * @LastEditTime: 2022-06-12 09:16:33
+ * @LastEditTime: 2022-06-14 16:53:30
  * @Description: file content
  */
 import Index from "@/pages/index/index";
@@ -41,6 +41,11 @@ const routes = [
         path: "/index/search",
         name: "indexSearch",
         component: () => import("@/pages/index/search")
+      },
+      {
+        path: "/index/undefined",
+        name: "indexUndefined",
+        component: () => import("@/pages/index/undefined")
       }
     ],
   },

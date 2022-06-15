@@ -11,6 +11,12 @@ import { onMounted } from "vue";
 
 export default {
   name: "App",
+  beforeCreate() {
+    console.log(
+      "%c移动2032 滕龙",
+      "color: #43bb88;font-size: 70px;font-weight: light;font-style: italic;font-family: '华文行楷'"
+    );
+  },
   setup() {
     const store = useStore();
     console.time();

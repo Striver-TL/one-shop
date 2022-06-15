@@ -2,7 +2,7 @@
  * @Author: Striver-TL 2806717229@qq.com
  * @Date: 2022-06-11 11:15:05
  * @LastEditors: Striver-TL 2806717229@qq.com
- * @LastEditTime: 2022-06-13 10:47:30
+ * @LastEditTime: 2022-06-13 21:53:29
  * @FilePath: \one-shop\src\components\LazyBlock.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -49,28 +49,32 @@ export default defineComponent({
       deplayLoad((...args) => {
         emit("success", ...args);
         isLoad.value = false;
-      }, 150);
+      }, 100);
     };
 
     onMounted(() => {
       const eventFunc = () => {
         const top = lazyElement.value.offsetTop;
-        window.scrollY >= top - window.innerHeight &&
-          window.scrollY <= top + window.innerHeight &&
+        const height = window.innerHeight;
+        if (
+          window.scrollY + height  >= top &&
+          window.scrollY - height <= top
+        ) {
           (isShow.value = true) &&
-          (window.removeEventListener("scroll", eventFunc) ||
-          window.removeEventListener("resize", eventFunc) ||
-          emit("show") ||
-          prop.autoLoad
-            ? toLoad()
-            : void 0);
+            (window.removeEventListener("scroll", eventFunc) ||
+            window.removeEventListener("resize", eventFunc) ||
+            emit("show") ||
+            prop.autoLoad
+              ? toLoad()
+              : void 0);
+        }
       };
       window.addEventListener("scroll", eventFunc);
       window.addEventListener("resize", eventFunc);
       onUnmounted(() => {
         window.removeEventListener("scroll", eventFunc);
         window.removeEventListener("resize", eventFunc);
-      })
+      });
       eventFunc();
     });
 

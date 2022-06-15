@@ -2,7 +2,7 @@
  * @Author: Striver-TL 2806717229@qq.com
  * @Date: 2022-06-11 11:15:05
  * @LastEditors: Striver-TL 2806717229@qq.com
- * @LastEditTime: 2022-06-11 14:00:36
+ * @LastEditTime: 2022-06-13 18:30:00
  * @FilePath: \one-shop\src\components\IndexFloorNav.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -33,7 +33,7 @@ import IndexAdvert from "@/components/IndexAdvert";
 export default defineComponent({
   name: "IndexFloorNav",
   setup() {
-    const floorData = reactive([]);
+    const floorData = reactive([null, null, null]);
     return {
       floorData,
       getData(id) {
@@ -46,7 +46,7 @@ export default defineComponent({
           },
         }).then((data) => {
           if (!data) return;
-          floorData.splice(data.id - 1, 0, data);
+          floorData.splice(data.id - 1, 1, data);
         });
       },
     };
@@ -57,3 +57,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.floornav .lazy-block:not(:nth-child(2)) .floor-content .floor-linktool {
+  background: #fcebf3;
+}
+</style>
